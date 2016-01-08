@@ -10,7 +10,7 @@ Features
 * Take a screenshot of the current page.
 * The user can then highlight or black out portions of that screenshot
 * The user can then provide textual comments, (effectively giving his feedback)
-* Some additional information collected with the feedback:
+* Some additional information collected with the feedback
     * various browser information (versions, user agent, etc.)
     * user information if the user is logged in (and your site uses Django auth system)
     * the url the user provides feedback on
@@ -22,7 +22,7 @@ with the feedback comments.
 Dependencies
 ------------
 
-This application depends on:
+This application depends on
     - python 3 (might work on python 2, but untested)
     - django >= 1.8
     - jquery must be enabled in your pages
@@ -49,41 +49,41 @@ Quick start
     For example using bootstrap CSS this code would overlay a button, vertically aligned on the middle of the
     page, right-aligned.
 
-        In your html/template file, import the form CSS::
+    In your html/template file, import the form CSS::
 
-            <link href="{% static 'tellme/feedback.css' %}" rel="stylesheet">
+        <link href="{% static 'tellme/feedback.css' %}" rel="stylesheet">
 
-        In your html/template file, inside the <body> section::
+    In your html/template file, inside the <body> section::
 
-            <button type="button" id="feedback-btn" class="btn btn-info vertical-right-aligned">
-                Feedback <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
-            </button>
+        <button type="button" id="feedback-btn" class="btn btn-info vertical-right-aligned">
+            Feedback <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
+        </button>
 
-        Note: the CSS class vertical-right-aligned is not from bootstrap, it is defined as::
+    Note: the CSS class vertical-right-aligned is not from bootstrap, it is defined as::
 
-                .vertical-right-aligned {
-                    transform: rotate(-90deg);
-                    transform-origin: 100% 100%;
-                    position: fixed;
-                    right: 0;
-                    top: 50%;
-                    z-index: 100;
-                }
+            .vertical-right-aligned {
+                transform: rotate(-90deg);
+                transform-origin: 100% 100%;
+                position: fixed;
+                right: 0;
+                top: 50%;
+                z-index: 100;
+            }
 
-        In your html/template file, in the page footer, connect that button to the feedback plugin::
+    In your html/template file, in the page footer, connect that button to the feedback plugin::
 
-            <script src="{% static 'tellme/feedback.js' %}"></script>
-            <script type="text/javascript">
-                $(function () {
-                    $.feedback({
-                        ajaxURL: {% url 'tellme:post_feedback' %},
-                        html2canvasURL: "{% static 'tellme/html2canvas.min.js' %}",
-                        feedbackButton: "#feedback-btn",
-                        postHTML: false,
-                        onClose: function() { window.location.reload(); }
-                    });
+        <script src="{% static 'tellme/feedback.js' %}"></script>
+        <script type="text/javascript">
+            $(function () {
+                $.feedback({
+                    ajaxURL: {% url 'tellme:post_feedback' %},
+                    html2canvasURL: "{% static 'tellme/html2canvas.min.js' %}",
+                    feedbackButton: "#feedback-btn",
+                    postHTML: false,
+                    onClose: function() { window.location.reload(); }
                 });
-            </script>
+            });
+        </script>
 
 
 5. Start your site, and click the feedback button. This will pop up the feedback form. Follow the instruction, and
