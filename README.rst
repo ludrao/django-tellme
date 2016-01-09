@@ -31,6 +31,10 @@ This application depends on
 Quick start
 -----------
 
+0. Install the app in your enviroenement::
+    
+   pip install django-tellme
+
 1. Add "tellme" to your INSTALLED_APPS setting like this::
 
     INSTALLED_APPS = [
