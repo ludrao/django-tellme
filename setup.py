@@ -19,6 +19,7 @@ setup(
     author='Ludrao',
     author_email='ludrao@ludrao.net',
     classifiers=[
+	'Development Status :: 3 - Alpha',
         'Environment :: Web Environment',
         'Framework :: Django',
         'Intended Audience :: Developers',
