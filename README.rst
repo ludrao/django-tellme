@@ -40,77 +40,77 @@ Quick start
 
 0. Install the app in your environment:
 
-    .. code:: bash
+.. code:: bash
 
-        pip install django-tellme
+    pip install django-tellme
 
 
 1. Add "tellme" to your INSTALLED_APPS setting like this:
 
-    .. code:: python
+.. code:: python
 
-        INSTALLED_APPS = [
-            ...
-            'tellme',
-        ]
+    INSTALLED_APPS = [
+        ...
+        'tellme',
+    ]
 
 2. Include the tellme URLconf in your project urls.py like this:
 
-    .. code:: python
+.. code:: python
 
-        url(r'^tellme/', include("tellme.urls", namespace="tellme")),
+    url(r'^tellme/', include("tellme.urls", namespace="tellme")),
 
 
 3. Run ``python manage.py migrate`` to create the tellme model in the database.
 
 4. Add a feedback button in your pages so that user can provide feedback
 
-    For example using bootstrap CSS this code would overlay a button, vertically aligned on the middle of the
-    page, right-aligned.
+For example using bootstrap CSS this code would overlay a button, vertically aligned on the middle of the
+page, right-aligned.
 
-    In your html/template file, import the form CSS:
+In your html/template file, import the form CSS:
 
-        .. code:: html
+.. code:: html
 
-            <link href="{% static 'tellme/feedback.css' %}" rel="stylesheet">
+    <link href="{% static 'tellme/feedback.css' %}" rel="stylesheet">
 
-    In your html/template file, inside the <body> section:
-    
-        .. code:: html
+In your html/template file, inside the <body> section:
 
-            <button type="button" id="feedback-btn" class="btn btn-info vertical-right-aligned">
-                Feedback <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
-            </button>
+.. code:: html
 
-    Note: the CSS class vertical-right-aligned is not from bootstrap, it is defined as:
+    <button type="button" id="feedback-btn" class="btn btn-info vertical-right-aligned">
+        Feedback <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
+    </button>
 
-        .. code:: css
+Note: the CSS class vertical-right-aligned is not from bootstrap, it is defined as:
 
-            .vertical-right-aligned {
-                transform: rotate(-90deg);
-                transform-origin: 100% 100%;
-                position: fixed;
-                right: 0;
-                top: 50%;
-                z-index: 100;
-            }
+.. code:: css
 
-    In your html/template file, in the page footer, connect that button to the feedback plugin:
+    .vertical-right-aligned {
+        transform: rotate(-90deg);
+        transform-origin: 100% 100%;
+        position: fixed;
+        right: 0;
+        top: 50%;
+        z-index: 100;
+    }
 
-        .. code:: html
+In your html/template file, in the page footer, connect that button to the feedback plugin:
 
-            <script src="{% static 'tellme/feedback.js' %}"></script>
-            <script type="text/javascript">
-                $(function () {
-                    $.feedback({
-                        ajaxURL: {% url 'tellme:post_feedback' %},
-                        html2canvasURL: "{% static 'tellme/html2canvas.min.js' %}",
-                        feedbackButton: "#feedback-btn",
-                        postHTML: false,
-                        onClose: function() { window.location.reload(); }
-                    });
-                });
-            </script>
+.. code:: html
+
+    <script src="{% static 'tellme/feedback.js' %}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.feedback({
+                ajaxURL: {% url 'tellme:post_feedback' %},
+                html2canvasURL: "{% static 'tellme/html2canvas.min.js' %}",
+                feedbackButton: "#feedback-btn",
+                postHTML: false,
+                onClose: function() { window.location.reload(); }
+            });
+        });
+    </script>
 
 
 5. Start your site, and click the feedback button. This will pop up the feedback form. Follow the instruction, and click on **Send** when finished.
