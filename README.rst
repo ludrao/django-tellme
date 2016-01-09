@@ -125,8 +125,10 @@ Email notifications
 
 This app can send you an email every time a feedback is posted. Currently the email is plaintext and does not contain
 the screenshot. However it does contain a link to the admin site with the full details of that feedback.
-To enable email notification, just add this line in your site ``settings.py``
-.. code:: python
+
+To enable email notification, just add this line in your site ``settings.py``:
+
+  .. code:: python
 
     TELLME_FEEDBACK_EMAIL = 'admin@tellme.com'
 
@@ -160,7 +162,8 @@ Improving this app - TODO
 
 This app was developed in rush for a simple yet complete, non intrusive, feedback tool. It does lack a lot of cool
 features. If you like to contribute, please do not hesitate!
-    * Provide a customization mechanism for the feedback popup/form
-    * Provide a customization mechanism for the email body, make it text+html
-    * Implement internationalization (i18n)
+
+- Provide a customization mechanism for the feedback popup/form.
+- Provide a customization mechanism for the email body, make it text+html.
+- Implement internationalization (i18n).
 
