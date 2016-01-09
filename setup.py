@@ -9,7 +9,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-tellme',
-    version='0.1',
+    version='0.2',
     packages=['tellme'],
     include_package_data=True,
     license='BSD License',
@@ -19,7 +19,7 @@ setup(
     author='Ludrao',
     author_email='ludrao@ludrao.net',
     classifiers=[
-	'Development Status :: 3 - Alpha',
+        'Development Status :: 3 - Alpha',
         'Environment :: Web Environment',
         'Framework :: Django',
         'Intended Audience :: Developers',

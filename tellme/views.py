@@ -1,13 +1,15 @@
 import json
 from base64 import b64decode
 
+from django.conf import settings
+from django.core import urlresolvers
+from django.core.mail import send_mail
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.core.files.base import ContentFile
 from tellme.forms import FeedbackForm
 
 
 def post_feedback(request):
-
     if request.method == 'POST' and request.is_ajax():
 
         # Copy Post data names into names used into the model in order to automatically create the model/form
@@ -20,7 +22,20 @@ def post_feedback(request):
         form = FeedbackForm(data, file)
         # check whether it's valid:
         if form.is_valid():
-            form.save()
+            f = form.save()
+
+            if hasattr(settings, 'TELLME_FEEDBACK_EMAIL'):
+                message = "Your site %s received feedback from %s.\nThe comments were:\n%s.\n\nSee the full feedback " \
+                          "content here: %s" % (request.get_host(), str(request.user), feedback['note'],
+                                                request.build_absolute_uri(
+                                                    urlresolvers.reverse('admin:tellme_feedback_change', args=(f.id,))))
+                send_mail(
+                        '[%s] Received feedback' % request.get_host(),
+                        message,
+                        settings.SERVER_EMAIL,
+                        [settings.TELLME_FEEDBACK_EMAIL],
+                        fail_silently=True)
+
             return JsonResponse({})
         else:
             return JsonResponse({'error': dict(form.errors)})

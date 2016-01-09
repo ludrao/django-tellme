@@ -21,6 +21,7 @@ Features
     * various browser information (versions, user agent, etc.)
     * user information if the user is logged in (and your site uses Django auth system)
     * the url the user provides feedback on
+* Optionally, send an email to the site admin when a feedback is posted
 
 The javascript part of this app is using feedback.js from https://github.com/ivoviz/feedback.
 feedback.js itself use html2canvas.js (https://github.com/niklasvh/html2canvas) to make page screenshot that is sent
@@ -119,6 +120,18 @@ In your html/template file, in the page footer, connect that button to the feedb
 6. Visit http://127.0.0.1:8000/admin/ to review user feedback.
 
 
+Email notifications
+-------------------
+
+This app can send you an email every time a feedback is posted. Currently the email is plaintext and does not contain
+the screenshot. However it does contain a link to the admin site with the full details of that feedback.
+To enable email notification, just add this line in your site ``settings.py``
+.. code:: python
+
+    TELLME_FEEDBACK_EMAIL = 'admin@tellme.com'
+
+
+
 Important Notes
 ---------------
 
@@ -135,4 +148,19 @@ Important Notes
     directory/backend.
     For this reason you need to have MEDIA_URL and MEDIA_ROOT settings available. See here for more details:
     https://docs.djangoproject.com/en/1.8/howto/static-files/
+
+.. note::
+
+    If using the email notification feature, make sure to setup your Email backend in django. More details here:
+    https://docs.djangoproject.com/en/1.8/topics/email/
+
+
+Improving this app - TODO
+-------------------------
+
+This app was developed in rush for a simple yet complete, non intrusive, feedback tool. It does lack a lot of cool
+features. If you like to contribute, please do not hesitate!
+    * Provide a customization mechanism for the feedback popup/form
+    * Provide a customization mechanism for the email body, make it text+html
+    * Implement internationalization (i18n)
 
