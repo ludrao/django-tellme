@@ -117,3 +117,22 @@ In your html/template file, in the page footer, connect that button to the feedb
 
 
 6. Visit http://127.0.0.1:8000/admin/ to review user feedback.
+
+
+Important Notes
+---------------
+
+.. note::
+
+    This app is based on feedback.js that send the feedback content using an HTTP POST method. Django uses a CSRF protection
+    mechanism, that block POST request that do not contain a specific token.
+    If you have not setup your page to transparently support AJAX POST here is an explanation on how to do it:
+    https://docs.djangoproject.com/en/1.8/ref/csrf/#ajax
+
+.. note::
+
+    This app stores screenshot as part of the feedback. Those are stored as PNG image files into your MEDIA
+    directory/backend.
+    For this reason you need to have MEDIA_URL and MEDIA_ROOT settings available. See here for more details:
+    https://docs.djangoproject.com/en/1.8/howto/static-files/
+
