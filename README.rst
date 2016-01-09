@@ -1,3 +1,10 @@
+
+.. image:: https://img.shields.io/pypi/v/django-tellme.svg
+    :target: https://pypi.python.org/pypi/django-tellme/
+
+.. image:: https://img.shields.io/github/license/ludrao/django-tellme.svg 
+    :target: https://en.wikipedia.org/wiki/BSD_licenses
+
 ======
 tellme
 ======
@@ -31,39 +38,53 @@ This application depends on
 Quick start
 -----------
 
-0. Install the app in your enviroenement::
-    
-   pip install django-tellme
+0. Install the app in your environment:
 
-1. Add "tellme" to your INSTALLED_APPS setting like this::
+    .. code:: bash
 
-    INSTALLED_APPS = [
-        ...
-        'tellme',
-    ]
+        pip install django-tellme
 
-2. Include the tellme URLconf in your project urls.py like this::
 
-    url(r'^tellme/', include("tellme.urls", namespace="tellme")),
+1. Add "tellme" to your INSTALLED_APPS setting like this:
 
-3. Run `python manage.py migrate` to create the tellme models.
+    .. code:: python
+
+        INSTALLED_APPS = [
+            ...
+            'tellme',
+        ]
+
+2. Include the tellme URLconf in your project urls.py like this:
+
+    .. code:: python
+
+        url(r'^tellme/', include("tellme.urls", namespace="tellme")),
+
+
+3. Run ``python manage.py migrate`` to create the tellme model in the database.
 
 4. Add a feedback button in your pages so that user can provide feedback
 
     For example using bootstrap CSS this code would overlay a button, vertically aligned on the middle of the
     page, right-aligned.
 
-    In your html/template file, import the form CSS::
+    In your html/template file, import the form CSS:
 
-        <link href="{% static 'tellme/feedback.css' %}" rel="stylesheet">
+        .. code:: html
 
-    In your html/template file, inside the <body> section::
+            <link href="{% static 'tellme/feedback.css' %}" rel="stylesheet">
 
-        <button type="button" id="feedback-btn" class="btn btn-info vertical-right-aligned">
-            Feedback <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
-        </button>
+    In your html/template file, inside the <body> section:
+    
+        .. code:: html
 
-    Note: the CSS class vertical-right-aligned is not from bootstrap, it is defined as::
+            <button type="button" id="feedback-btn" class="btn btn-info vertical-right-aligned">
+                Feedback <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
+            </button>
+
+    Note: the CSS class vertical-right-aligned is not from bootstrap, it is defined as:
+
+        .. code:: css
 
             .vertical-right-aligned {
                 transform: rotate(-90deg);
@@ -74,24 +95,25 @@ Quick start
                 z-index: 100;
             }
 
-    In your html/template file, in the page footer, connect that button to the feedback plugin::
+    In your html/template file, in the page footer, connect that button to the feedback plugin:
 
-        <script src="{% static 'tellme/feedback.js' %}"></script>
-        <script type="text/javascript">
-            $(function () {
-                $.feedback({
-                    ajaxURL: {% url 'tellme:post_feedback' %},
-                    html2canvasURL: "{% static 'tellme/html2canvas.min.js' %}",
-                    feedbackButton: "#feedback-btn",
-                    postHTML: false,
-                    onClose: function() { window.location.reload(); }
+        .. code:: html
+
+            <script src="{% static 'tellme/feedback.js' %}"></script>
+            <script type="text/javascript">
+                $(function () {
+                    $.feedback({
+                        ajaxURL: {% url 'tellme:post_feedback' %},
+                        html2canvasURL: "{% static 'tellme/html2canvas.min.js' %}",
+                        feedbackButton: "#feedback-btn",
+                        postHTML: false,
+                        onClose: function() { window.location.reload(); }
+                    });
                 });
-            });
-        </script>
+            </script>
 
 
-5. Start your site, and click the feedback button. This will pop up the feedback form. Follow the instruction, and
-    click on Send when finished.
+5. Start your site, and click the feedback button. This will pop up the feedback form. Follow the instruction, and click on **Send** when finished.
 
 
 6. Visit http://127.0.0.1:8000/admin/ to review user feedback.
