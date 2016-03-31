@@ -2,6 +2,7 @@ import json
 
 from django.contrib import admin
 from .models import Feedback
+from django.utils.translation import ugettext_lazy as _
 
 
 # Display an html table from a dict
@@ -42,7 +43,7 @@ class FeedbackAdmin(admin.ModelAdmin):
         if feedback.screenshot:
             return u'<a href="%s" ><img src="%s" width="100"/></a>' % (feedback.screenshot.url, feedback.screenshot.url)
     screenshot_thumb.allow_tags = True
-    screenshot_thumb.short_description = "Screenshot"
+    screenshot_thumb.short_description = _("Screenshot")
 
     def browser_html(self, feedback: Feedback):
         if feedback.browser:
@@ -50,9 +51,6 @@ class FeedbackAdmin(admin.ModelAdmin):
             pretty_items(r, json.loads(feedback.browser))
             return u''.join(r)
     browser_html.allow_tags = True
-    browser_html.short_description = "Browser Info"
+    browser_html.short_description = _("Browser Info")
 
 admin.site.register(Feedback, FeedbackAdmin)
-
-
-

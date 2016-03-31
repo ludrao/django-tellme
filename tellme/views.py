@@ -4,6 +4,7 @@ from base64 import b64decode
 from django.conf import settings
 from django.core import urlresolvers
 from django.core.mail import send_mail
+from django.utils.translation import ugettext_lazy as _
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.core.files.base import ContentFile
 from tellme.forms import FeedbackForm
@@ -25,12 +26,12 @@ def post_feedback(request):
             f = form.save()
 
             if hasattr(settings, 'TELLME_FEEDBACK_EMAIL'):
-                message = "Your site %s received feedback from %s.\nThe comments were:\n%s.\n\nSee the full feedback " \
-                          "content here: %s" % (request.get_host(), str(request.user), feedback['note'],
-                                                request.build_absolute_uri(
-                                                    urlresolvers.reverse('admin:tellme_feedback_change', args=(f.id,))))
+                message = _("Your site %(host)s received feedback from %(user)s.\nThe comments were:\n%(note)s.\n\nSee the full feedback " \
+                          "content here: %(url)s") % {'host' : request.get_host(), 'user': str(request.user), 'note': feedback['note'],
+                                                'url': request.build_absolute_uri(
+                                                    urlresolvers.reverse('admin:tellme_feedback_change', args=(f.id,)))}
                 send_mail(
-                        '[%s] Received feedback' % request.get_host(),
+                        _('[%(host)s] Received feedback') % {'host': request.get_host()},
                         message,
                         settings.SERVER_EMAIL,
                         [settings.TELLME_FEEDBACK_EMAIL],

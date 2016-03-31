@@ -165,5 +165,4 @@ features. If you like to contribute, please do not hesitate!
 
 - Provide a customization mechanism for the feedback popup/form.
 - Provide a customization mechanism for the email body, make it text+html.
-- Implement internationalization (i18n).
 
