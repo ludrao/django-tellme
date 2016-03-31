@@ -39,13 +39,13 @@ class FeedbackAdmin(admin.ModelAdmin):
     exclude = ('browser', 'screenshot')
     ordering = ("-created",)
 
-    def screenshot_thumb(self, feedback: Feedback):
+    def screenshot_thumb(self, feedback):
         if feedback.screenshot:
             return u'<a href="%s" ><img src="%s" width="100"/></a>' % (feedback.screenshot.url, feedback.screenshot.url)
     screenshot_thumb.allow_tags = True
     screenshot_thumb.short_description = _("Screenshot")
 
-    def browser_html(self, feedback: Feedback):
+    def browser_html(self, feedback):
         if feedback.browser:
             r = []
             pretty_items(r, json.loads(feedback.browser))
