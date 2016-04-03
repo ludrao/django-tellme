@@ -61,7 +61,9 @@ Quick start
 
 .. code:: python
 
-    url(r'^tellme/', include("tellme.urls", namespace="tellme")),
+    url(r'^tellme/', include("tellme.urls")),
+
+Note: to not set a namespace here, django-tellme does it itself in its urls file.
 
 
 3. Run ``python manage.py migrate`` to create the tellme model in the database.
