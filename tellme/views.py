@@ -26,10 +26,13 @@ def post_feedback(request):
             f = form.save()
 
             if hasattr(settings, 'TELLME_FEEDBACK_EMAIL'):
-                message = _("Your site %(host)s received feedback from %(user)s.\nThe comments were:\n%(note)s.\n\nSee the full feedback " \
-                          "content here: %(url)s") % {'host' : request.get_host(), 'user': str(request.user), 'note': feedback['note'],
-                                                'url': request.build_absolute_uri(
-                                                    urlresolvers.reverse('admin:tellme_feedback_change', args=(f.id,)))}
+                message = _("Your site %(host)s received feedback from %(user)s.\n"
+                            "The comments were:\n"
+                            "%(note)s.\n\n"
+                            "See the full feedback content here: %(url)s")\
+                          % {'host': request.get_host(), 'user': str(request.user), 'note': feedback['note'],
+                             'url': request.build_absolute_uri(
+                                 urlresolvers.reverse('admin:tellme_feedback_change', args=(f.id,)))}
                 send_mail(
                         _('[%(host)s] Received feedback') % {'host': request.get_host()},
                         message,

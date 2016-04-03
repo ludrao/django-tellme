@@ -2,7 +2,7 @@ import json
 
 from django.contrib import admin
 from .models import Feedback
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _, pgettext_lazy
 
 
 # Display an html table from a dict
@@ -51,6 +51,6 @@ class FeedbackAdmin(admin.ModelAdmin):
             pretty_items(r, json.loads(feedback.browser))
             return u''.join(r)
     browser_html.allow_tags = True
-    browser_html.short_description = _("Browser Info")
+    browser_html.short_description = pgettext_lazy("Admin model", "Browser Info")
 
 admin.site.register(Feedback, FeedbackAdmin)

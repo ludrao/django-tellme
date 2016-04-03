@@ -16,12 +16,14 @@ Features
 
 * Take a screenshot of the current page.
 * The user can then highlight or black out portions of that screenshot
-* The user can then provide textual comments, (effectively giving his feedback)
+* The user have to provide textual comments, (effectively giving his feedback)
 * Some additional information collected with the feedback
     * various browser information (versions, user agent, etc.)
     * user information if the user is logged in (and your site uses Django auth system)
     * the url the user provides feedback on
 * Optionally, send an email to the site admin when a feedback is posted
+* Supports localization (currently supported languages are English and French, translation contrib are welcomed!)
+* Customizable UI by redefining templates
 
 The javascript part of this app is using feedback.js from https://github.com/ivoviz/feedback.
 feedback.js itself use html2canvas.js (https://github.com/niklasvh/html2canvas) to make page screenshot that is sent
@@ -100,24 +102,34 @@ In your html/template file, in the page footer, connect that button to the feedb
 
 .. code:: html
 
-    <script src="{% static 'tellme/feedback.js' %}"></script>
-    <script type="text/javascript">
-        $(function () {
-            $.feedback({
-                ajaxURL: {% url 'tellme:post_feedback' %},
-                html2canvasURL: "{% static 'tellme/html2canvas.min.js' %}",
-                feedbackButton: "#feedback-btn",
-                postHTML: false,
-                onClose: function() { window.location.reload(); }
-            });
-        });
-    </script>
+    {%  include 'tellme/js_inc.html' %}
 
+Look into this template file, it includes a few things that can be overridden (using the Django template {% extend %} mechanism), or simply redefined it in your page. What js_inc.html contains by default:
+
+    - Load jquery plugin
+    - Add CSRF automatically to all AJAX post request
+    - Enable the JS feedback plugin using customizable template for each feedback step
 
 5. Start your site, and click the feedback button. This will pop up the feedback form. Follow the instruction, and click on **Send** when finished.
 
 
 6. Visit http://127.0.0.1:8000/admin/ to review user feedback.
+
+
+How to customize the JS feedback popup UI
+-----------------------------------------
+
+Each step of the feedback popup is an HTML UI element that can be redefined. In order to define your custom UI, you simply
+have to 'overload' the template by creating, in your own app template directory, a file with the same name as the original tellme template.
+The feedback popup contains 4 steps + an error screen, that can be redefined. Look for the following files:
+
+    - tellme/tpl-description.html
+    - tellme/tpl-highlighter.html
+    - tellme/tpl-overview.html
+    - tellme/tpl-submit-error.html
+    - tellme/tpl-submit-success.html
+
+As an easy way to start you can copy one of the above file in your template directory and modify it incrementally. Please note that you need to keep the same directory structure (i.e. tellme/tpl-xxx.html), and that your app has to be listed first in the ``INSTALLED_APPS`` list so that it takes this modified template file instead of the original tellme template file.
 
 
 Email notifications
@@ -156,6 +168,18 @@ Important Notes
     If using the email notification feature, make sure to setup your Email backend in django. More details here:
     https://docs.djangoproject.com/en/1.8/topics/email/
 
+Version History
+---------------
+
+version 0.3
+    *special thanks to llann for i18n initial support*
+
+    - Added internationalization support, defaulting to English localization.
+    - Added French localization
+    - Added an "include" template to simplify usage
+    - Used minified version of js libraries
+    - Provided a template structure so that the UI can be customized
+
 
 Improving this app - TODO
 -------------------------
@@ -163,6 +187,4 @@ Improving this app - TODO
 This app was developed in rush for a simple yet complete, non intrusive, feedback tool. It does lack a lot of cool
 features. If you like to contribute, please do not hesitate!
 
-- Provide a customization mechanism for the feedback popup/form.
 - Provide a customization mechanism for the email body, make it text+html.
-
