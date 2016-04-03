@@ -188,3 +188,4 @@ This app was developed in rush for a simple yet complete, non intrusive, feedbac
 features. If you like to contribute, please do not hesitate!
 
 - Provide a customization mechanism for the email body, make it text+html.
+- Add continuous integration testing
