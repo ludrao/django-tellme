@@ -173,7 +173,7 @@ Important Notes
 Version History
 ---------------
 
-version 0.3
+version 0.5
     *special thanks to llann for i18n initial support*
 
     - Added internationalization support, defaulting to English localization.
