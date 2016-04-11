@@ -173,6 +173,10 @@ Important Notes
 Version History
 ---------------
 
+version 0.6
+    - Minors distribution fixes
+    - Updated migrations scripts
+
 version 0.5
     *special thanks to llann for i18n initial support*
 
