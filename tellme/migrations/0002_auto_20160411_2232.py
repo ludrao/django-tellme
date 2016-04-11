@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='feedback',
             name='screenshot',
-            field=models.ImageField(upload_to=b'tellme/screenshots/', null=True, verbose_name='Screenshot', blank=True),
+            field=models.ImageField(upload_to='tellme/screenshots/', verbose_name='Screenshot', blank=True, null=True),
         ),
         migrations.AlterField(
             model_name='feedback',
@@ -41,6 +41,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='feedback',
             name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.SET_NULL, verbose_name='User', blank=True, to=settings.AUTH_USER_MODEL, null=True),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.SET_NULL, blank=True, verbose_name='User', to=settings.AUTH_USER_MODEL, null=True),
         ),
     ]
