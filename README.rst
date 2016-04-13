@@ -112,6 +112,33 @@ Look into this template file, it includes a few things that can be overridden (u
     - Add CSRF automatically to all AJAX post request
     - Enable the JS feedback plugin using customizable template for each feedback step
 
+This js_inc.html template usage is totally optional. The important part of that template is the javascript call that enables the plugin on a button:
+
+.. code:: javascript
+
+    <script src="{% static 'tellme/feedback.min.js' %}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.feedback({
+                ajaxURL: "{% url 'tellme:post_feedback' %}",
+                html2canvasURL: "{% static 'tellme/html2canvas.min.js' %}",
+                feedbackButton: "#feedback-btn",
+                initButtonText: "{% filter escapejs %}{%  include 'tellme/initButtonText.txt' %}{% endfilter %}",
+                postHTML: false,
+                tpl: {
+                    description: "{% filter escapejs %}{%  include 'tellme/tpl-description.html' %}{% endfilter %}",
+                    highlighter: "{% filter escapejs %}{%  include 'tellme/tpl-highlighter.html' %}{% endfilter %}",
+    				overview:	 "{% filter escapejs %}{%  include 'tellme/tpl-overview.html' %}{% endfilter %}",
+    				submitSuccess:"{% filter escapejs %}{%  include 'tellme/tpl-submit-success.html' %}{% endfilter %}",
+    				submitError: "{% filter escapejs %}{%  include 'tellme/tpl-submit-error.html' %}{% endfilter %}"
+                },
+                initialBox: true
+            });
+        });
+    </script>
+
+
+
 5. Start your site, and click the feedback button. This will pop up the feedback form. Follow the instruction, and click on **Send** when finished.
 
 
