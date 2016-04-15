@@ -144,6 +144,35 @@ This js_inc.html template usage is totally optional. The important part of that 
 
 6. Visit http://127.0.0.1:8000/admin/ to review user feedback.
 
+Some screenshots of the plugin in action
+----------------------------------------
+
+You define the feedback button that you like. In that example it is using the page theme, and is located on the middle left-side of the screen.
+
+.. image:: images/snapshot-feedback-button.png
+   :align: right
+   :scale: 50 %
+
+If a user click on it he will be able to highlight the reason of his feedback on a screenshot of the current page. He can also black out
+sensitive information, if any.
+
+.. image:: images/snapshot-highlight-blackout.png
+   :align: right
+   :scale: 50 %
+
+Once finished and can review his feedback, add a comment and finalize the feedback.
+
+.. image:: images/snapshot-feedback-form.png
+   :align: right
+   :scale: 50 %
+
+When the feedback is sent, the site admin will receive an email with a link to the backoffice site that will allow him to learn about this feedback.
+Of course, he can always go to the backoffice site in order to review the different feedback later on.
+
+.. image:: images/snapshot-admin-view.png
+   :align: right
+   :scale: 50 %
+
 
 How to customize the JS feedback popup UI
 -----------------------------------------
