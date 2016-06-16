@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-03 16:19+0000\n"
+"POT-Creation-Date: 2016-06-16 21:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,8 +51,7 @@ msgid "Send feedback"
 msgstr ""
 
 #: templates/tellme/tpl-description.html:3
-#: templates/tellme/tpl-highlighter.html:3
-#: templates/tellme/tpl-overview.html:3
+#: templates/tellme/tpl-highlighter.html:3 templates/tellme/tpl-overview.html:3
 #: templates/tellme/tpl-submit-error.html:3
 #: templates/tellme/tpl-submit-success.html:3
 msgid "Feedback"
@@ -60,7 +59,7 @@ msgstr ""
 
 #: templates/tellme/tpl-description.html:4
 msgid ""
-"Feedback lets you send us suggestions about our products. We welcome problem "
+"Feedback lets you send us suggestions about this site. We welcome problem "
 "reports, feature ideas and general comments."
 msgstr ""
 
