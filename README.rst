@@ -229,6 +229,9 @@ Important Notes
 Version History
 ---------------
 
+version 0.6.1
+    - Minor translation fixes
+
 version 0.6
     - Minors distribution fixes
     - Updated migrations scripts
