@@ -254,3 +254,11 @@ features. If you like to contribute, please do not hesitate!
 
 - Provide a customization mechanism for the email body, make it text+html.
 - Add continuous integration testing
+
+Translations
+------------
+`Transifex <https://www.transifex.com/django-tellme/django-tellme/dashboard/>`_ is used to manage translations.
+
+Feel free to improve translations
+
+You can request to add your own language directly on Transifex.
