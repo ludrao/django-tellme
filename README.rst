@@ -230,6 +230,9 @@ Important Notes
 Version History
 ---------------
 
+version 0.6.2
+    - Worked around an issue with scrolled page in html2canvas
+
 version 0.6.1
     - Minor translation fixes
 
