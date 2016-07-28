@@ -78,7 +78,7 @@ In your html/template file, import the form CSS:
 
 .. code:: html
 
-    <link href="{% static 'tellme/feedback.css' %}" rel="stylesheet">
+    <link href="{% static 'tellme/feedback.min.css' %}" rel="stylesheet">
 
 In your html/template file, inside the <body> section:
 
