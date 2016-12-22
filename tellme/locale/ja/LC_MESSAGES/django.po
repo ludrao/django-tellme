@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Django tellme\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-16 21:04+0000\n"
-"PO-Revision-Date: 2016-12-21 02:57+0000\n"
+"PO-Revision-Date: 2016-12-22 08:58+0000\n"
 "Last-Translator: salexkidd <salexkidd@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/django-tellme/django-tellme/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr "スクリーンショット"
 #: admin.py:54
 msgctxt "Admin model"
 msgid "Browser Info"
-msgstr "ブラウザ情報"
+msgstr "ブラウザの情報"
 
 #: models.py:8
 msgid "Url"
@@ -63,16 +63,16 @@ msgstr "Feedback"
 msgid ""
 "Feedback lets you send us suggestions about this site. We welcome problem "
 "reports, feature ideas and general comments."
-msgstr "このサイトに関するフィードバックを送信することができます。 問題報告、機能のアイデア、一般的なコメントを歓迎します。"
+msgstr "このサイトに関するフィードバックを送信します。ぜひ、問題点・アイデア・気づいた点などをお送りください。"
 
 #: templates/tellme/tpl-description.html:5
 msgid "Start by writing a brief description:"
-msgstr "説明を記載して始めましょう:"
+msgstr "まずは問題点・アイデア・気づいた点を入力してください:"
 
 #: templates/tellme/tpl-description.html:6
 msgid ""
 "Next we'll let you identify areas of the page related to your description."
-msgstr "次にあなたの説明に関連するページの場所を指定してください。"
+msgstr "次に、上で入力した内容に該当する範囲を画面内から指定してください"
 
 #: templates/tellme/tpl-description.html:7
 #: templates/tellme/tpl-highlighter.html:15
@@ -82,13 +82,13 @@ msgstr "次へ"
 #: templates/tellme/tpl-description.html:8
 #: templates/tellme/tpl-overview.html:18
 msgid "Please enter a description."
-msgstr "説明を記入してください。"
+msgstr "問題点・アイデア・気づいた点を入力してください"
 
 #: templates/tellme/tpl-highlighter.html:4
 msgid ""
 "Click and drag on the page to help us better understand your feedback. You "
 "can move this dialog if it's in the way."
-msgstr "フィードバックをよりよく理解できるように、ページをクリックしてドラッグしてください。 記入中、このダイアログを移動することができます。"
+msgstr "画面内をクリックまたはドラッグして、該当する範囲を指定してください。このボックスを移動することもできます。"
 
 #: templates/tellme/tpl-highlighter.html:7
 msgid "Highlight"
@@ -96,15 +96,15 @@ msgstr "ハイライト"
 
 #: templates/tellme/tpl-highlighter.html:8
 msgid "Highlight areas relevant to your feedback."
-msgstr "フィードバックに関連する部分を強調表示します。"
+msgstr "フィードバックしたい範囲をハイライトします"
 
 #: templates/tellme/tpl-highlighter.html:11
 msgid "Black out"
-msgstr "黒で塗りつぶし"
+msgstr "塗りつぶし"
 
 #: templates/tellme/tpl-highlighter.html:12
 msgid "Black out any personal information."
-msgstr "黒で個人情報をなどを塗りつぶすことができます。"
+msgstr "個人情報をなどを塗りつぶすことができます。"
 
 #: templates/tellme/tpl-highlighter.html:18
 #: templates/tellme/tpl-overview.html:16
@@ -125,7 +125,7 @@ msgstr "なし"
 
 #: templates/tellme/tpl-overview.html:8
 msgid "Browser Info"
-msgstr "ブラウザ情報"
+msgstr "ブラウザの情報"
 
 #: templates/tellme/tpl-overview.html:9
 msgid "Page Info"
@@ -141,7 +141,7 @@ msgstr "送る"
 
 #: templates/tellme/tpl-submit-error.html:4
 msgid "Sadly an error occurred while sending your feedback. Please try again."
-msgstr "残念ながらあなたのフィードバックを送信中にエラーが発生しました。 もう一度お試しください。"
+msgstr "フィードバック送信中にエラーが発生しました。お手数ですが、もう一度送信してください。"
 
 #: templates/tellme/tpl-submit-error.html:5
 #: templates/tellme/tpl-submit-success.html:6
@@ -151,13 +151,13 @@ msgstr "OK"
 #: templates/tellme/tpl-submit-success.html:4
 msgid ""
 "Thank you for your feedback. We value every piece of feedback we receive."
-msgstr "ご意見ありがとうございます。 私たちは、受け取ったすべてのフィードバックを大切にします。"
+msgstr "ご意見ありがとうございます。 受け取ったすべてのフィードバックを大切にします。"
 
 #: templates/tellme/tpl-submit-success.html:5
 msgid ""
 "We cannot respond individually to every one, but we will use your comments "
 "as we strive to improve your experience."
-msgstr "すべての人に個別に対応することはできませんが、改善するために努力致します。"
+msgstr "すべてのご意見に対応することはできませんが、改善するために努力致します。"
 
 #: views.py:29
 #, python-format
@@ -167,7 +167,7 @@ msgid ""
 "%(note)s.\n"
 "\n"
 "See the full feedback content here: %(url)s"
-msgstr "あなたのサイト %(host)s が %(user)s からフィードバックを受け付けました。\nコメントは以下のとおりです:\n%(note)s.\n\n完全なフィードバックの内容はこちらをご覧ください: %(url)s"
+msgstr "あなたのサイト %(host)s が %(user)s からフィードバックを受け付けました。\nコメントは以下のとおりです:\n%(note)s.\n\nフィードバックの全文についてはこちらをご覧ください: %(url)s"
 
 #: views.py:37
 #, python-format
