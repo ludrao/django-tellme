@@ -9,7 +9,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-tellme',
-    version='0.6.2',
+    version='0.6.3',
     packages=['tellme'],
     include_package_data=True,
     license='BSD License',

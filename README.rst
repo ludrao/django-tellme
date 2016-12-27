@@ -230,6 +230,9 @@ Important Notes
 Version History
 ---------------
 
+version 0.6.3
+    - Added Japanese translations (thx @salexkidd)
+
 version 0.6.2
     - Worked around an issue with scrolled page in html2canvas
 
@@ -241,7 +244,7 @@ version 0.6
     - Updated migrations scripts
 
 version 0.5
-    *special thanks to llann for i18n initial support*
+    *special thanks to @llann for i18n initial support*
 
     - Added internationalization support, defaulting to English localization.
     - Added French localization
@@ -263,6 +266,13 @@ Translations
 ------------
 `Transifex <https://www.transifex.com/django-tellme/django-tellme/dashboard/>`_ is used to manage translations.
 
-Feel free to improve translations
+Feel free to improve translations.
+
+Currently supported languages are:
+   - English
+   - French
+   - Japanese
+   - Spanish (Initiated but need help, see on transifex site above)
+   - Russian (Partial, need help see on transifex site above)
 
 You can request to add your own language directly on Transifex.
