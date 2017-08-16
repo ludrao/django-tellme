@@ -8,6 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.core.files.base import ContentFile
 from tellme.forms import FeedbackForm
+from django.utils.crypto import get_random_string
 
 
 def post_feedback(request):
@@ -19,7 +20,7 @@ def post_feedback(request):
         data = {'url': feedback['url'], 'browser': json.dumps(feedback['browser']), 'comment': feedback['note'],
                 'user': request.user.id}
         imgstr = feedback['img'].split(';base64,')[1]
-        file = {'screenshot': ContentFile(b64decode(imgstr), name="screenshot.png")}
+        file = {'screenshot': ContentFile(b64decode(imgstr), name="screenshot_" + get_random_string(6) + ".png")}
         form = FeedbackForm(data, file)
         # check whether it's valid:
         if form.is_valid():
