@@ -32,7 +32,7 @@ def pretty_items(r, d, nametag="<strong>%s: </strong>", itemtag='<li>%s</li>\n',
 
 
 class FeedbackAdmin(admin.ModelAdmin):
-    list_display = ("comment", "url", "screenshot_thumb", "user", "created")
+    list_display = ("comment", "url", "screenshot_thumb", "user", "email", "created")
     list_filter = ("created", "user", "url")
     search_fields = ("comment", "user__email", "user__name")
     readonly_fields = ("comment", "url", "user", "browser_html", "screenshot_thumb")
