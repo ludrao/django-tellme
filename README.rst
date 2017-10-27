@@ -2,7 +2,7 @@
 .. image:: https://img.shields.io/pypi/v/django-tellme.svg
     :target: https://pypi.python.org/pypi/django-tellme/
 
-.. image:: https://img.shields.io/github/license/ludrao/django-tellme.svg 
+.. image:: https://img.shields.io/github/license/ludrao/django-tellme.svg
     :target: https://en.wikipedia.org/wiki/BSD_licenses
 
 ======
@@ -274,5 +274,6 @@ Currently supported languages are:
    - Japanese
    - Spanish (Initiated but need help, see on transifex site above)
    - Russian (Partial, need help see on transifex site above)
+   - Brazilian Portuguese
 
 You can request to add your own language directly on Transifex.
