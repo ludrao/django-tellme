@@ -11,6 +11,7 @@ class Feedback(models.Model):
     screenshot = models.ImageField(_('Screenshot'), blank=True, null=True, upload_to="tellme/screenshots/")
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_("User"), on_delete=models.SET_NULL, blank=True, null=True)
+    email = models.EmailField(max_length=254, blank=True, null=True)
     created = models.DateTimeField(_('Creation date'), auto_now_add=True)
 
 

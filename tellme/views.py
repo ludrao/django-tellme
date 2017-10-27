@@ -17,8 +17,12 @@ def post_feedback(request):
         # Copy Post data names into names used into the model in order to automatically create the model/form
         # from the request dicts
         feedback = json.loads(request.POST["feedback"])
-        data = {'url': feedback['url'], 'browser': json.dumps(feedback['browser']), 'comment': feedback['note'],
-                'user': request.user.id}
+        if request.user.id:
+            data = {'url': feedback['url'], 'browser': json.dumps(feedback['browser']), 'comment': feedback['note'],
+                        'user': request.user.id}
+        else:
+            data = {'url': feedback['url'], 'browser': json.dumps(feedback['browser']), 'comment': feedback['note'],
+                        'email': feedback['email']}
         imgstr = feedback['img'].split(';base64,')[1]
         file = {'screenshot': ContentFile(b64decode(imgstr), name="screenshot_" + get_random_string(6) + ".png")}
         form = FeedbackForm(data, file)
