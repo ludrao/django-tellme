@@ -230,8 +230,12 @@ Important Notes
 Version History
 ---------------
 
+version 0.6.4
+    - Added Brazilian Portuguese transalation (thx @hebertjulio)
+    - Added Optional email user input when the user is not authenticated (thx @Basiczombie)
+
 version 0.6.3
-    - Added Japanese translations (thx @salexkidd)
+    - Added Japanese translation (thx @salexkidd)
 
 version 0.6.2
     - Worked around an issue with scrolled page in html2canvas
