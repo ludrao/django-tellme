@@ -231,8 +231,8 @@ Version History
 ---------------
 
 version 0.6.4
-    - Added Brazilian Portuguese transalation (thx @hebertjulio)
-    - Added Optional email user input when the user is not authenticated (thx @Basiczombie)
+    - Added Brazilian Portuguese translation (thx @hebertjulio)
+    - Added Optional email user input, when the user is not authenticated (thx @Basiczombie)
 
 version 0.6.3
     - Added Japanese translation (thx @salexkidd)
