@@ -27,7 +27,7 @@ def post_feedback(request):
                         'user': request.user.id}
         else:
             data = {'url': feedback['url'], 'browser': json.dumps(feedback['browser']), 'comment': feedback['note'],
-                        'email': feedback['email']}
+                        'email': feedback.get('email')}
         imgstr = feedback['img'].split(';base64,')[1]
         file = {'screenshot': ContentFile(b64decode(imgstr), name="screenshot_" + get_random_string(6) + ".png")}
         form = FeedbackForm(data, file)
