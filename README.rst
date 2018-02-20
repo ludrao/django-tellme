@@ -34,7 +34,7 @@ Dependencies
 
 This application depends on
     - python 3 (might work on python 2, but untested)
-    - django >= 1.8
+    - django >= 1.8 (also compatible with django >= 2.0)
     - jquery must be enabled in your pages
     - Promises polyfill for IE (including IE11!) (can use that: https://github.com/stefanpenner/es6-promise)
 
