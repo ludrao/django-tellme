@@ -2,3 +2,5 @@ dist/
 django_tellme.egg-info/
 .DS_Store
 .idea/
+__pycache__/
+*.pyc

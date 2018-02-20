@@ -2,13 +2,18 @@ import json
 from base64 import b64decode
 
 from django.conf import settings
-from django.core import urlresolvers
 from django.core.mail import send_mail
 from django.utils.translation import ugettext_lazy as _
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.core.files.base import ContentFile
-from tellme.forms import FeedbackForm
 from django.utils.crypto import get_random_string
+
+try:
+    from django.core.urlresolvers import reverse
+except ImportError:
+    from django.urls import reverse
+
+from tellme.forms import FeedbackForm
 
 
 def post_feedback(request):
@@ -22,7 +27,7 @@ def post_feedback(request):
                         'user': request.user.id}
         else:
             data = {'url': feedback['url'], 'browser': json.dumps(feedback['browser']), 'comment': feedback['note'],
-                        'email': feedback['email']}
+                        'email': feedback.get('email')}
         imgstr = feedback['img'].split(';base64,')[1]
         file = {'screenshot': ContentFile(b64decode(imgstr), name="screenshot_" + get_random_string(6) + ".png")}
         form = FeedbackForm(data, file)
@@ -37,7 +42,7 @@ def post_feedback(request):
                             "See the full feedback content here: %(url)s")\
                           % {'host': request.get_host(), 'user': str(request.user), 'note': feedback['note'],
                              'url': request.build_absolute_uri(
-                                 urlresolvers.reverse('admin:tellme_feedback_change', args=(f.id,)))}
+                                 reverse('admin:tellme_feedback_change', args=(f.id,)))}
                 send_mail(
                         _('[%(host)s] Received feedback') % {'host': request.get_host()},
                         message,
