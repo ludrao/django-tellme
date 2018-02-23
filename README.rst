@@ -229,6 +229,8 @@ Important Notes
 
 Version History
 ---------------
+version 0.6.5
+    - Added support for Django 2+ (thx @hebertjulio and @llann)
 
 version 0.6.4
     - Added Brazilian Portuguese translation (thx @hebertjulio)
