@@ -1,9 +1,12 @@
 from django.conf import settings
 from django.db import models
+from django.db.models.signals import post_delete
+from django.dispatch.dispatcher import receiver
 from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import python_2_unicode_compatible
 
 
-# Create your models here.
+@python_2_unicode_compatible
 class Feedback(models.Model):
     url = models.CharField(_('Url'), max_length=255)
     browser = models.TextField(_('Browser'))
@@ -14,14 +17,18 @@ class Feedback(models.Model):
     email = models.EmailField(max_length=254, blank=True, null=True)
     created = models.DateTimeField(_('Creation date'), auto_now_add=True)
 
+    class Meta:
+        verbose_name = _("feedback")
+        verbose_name_plural = _("feedbacks")
 
-# Receive the post_delete signal and delete the file associated with the model instance.
-from django.db.models.signals import post_delete
-from django.dispatch.dispatcher import receiver
+    def __str__(self):
+        return '%s: %s' % (self.created, url)
 
 
 @receiver(post_delete, sender=Feedback)
 def feedback_screenshot_delete(sender, instance, **kwargs):
-    # Pass false so FileField doesn't save the model.
+    """
+    Delete feedback's screenshot.
+    """
     if instance.screenshot:
         instance.screenshot.delete(save=False)
