@@ -4,3 +4,5 @@ django_tellme.egg-info/
 .idea/
 __pycache__/
 *.pyc
+venv
+*.sw[pon]
