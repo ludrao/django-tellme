@@ -38,6 +38,7 @@ class FeedbackAdmin(admin.ModelAdmin):
     readonly_fields = ("comment", "url", "user", "browser_html", "screenshot_thumb")
     exclude = ('browser', 'screenshot')
     ordering = ("-created",)
+    date_hierarchy = 'created'
 
     def screenshot_thumb(self, feedback):
         if feedback.screenshot:

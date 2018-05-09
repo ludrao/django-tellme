@@ -4,7 +4,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "Shuuut... It's a secret"
 
 DEBUG = False
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.auth',
@@ -41,7 +41,7 @@ WSGI_APPLICATION = 'tellme.tests.testproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': ':memory:',
+        'NAME': os.environ.get('DATABASE_PATH', ':memory:'),
     }
 }
 

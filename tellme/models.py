@@ -15,7 +15,7 @@ class Feedback(models.Model):
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_("User"), on_delete=models.SET_NULL, blank=True, null=True)
     email = models.EmailField(max_length=254, blank=True, null=True)
-    created = models.DateTimeField(_('Creation date'), auto_now_add=True)
+    created = models.DateTimeField(_('Creation date'), auto_now_add=True, db_index=True)
 
     class Meta:
         verbose_name = _("feedback")
