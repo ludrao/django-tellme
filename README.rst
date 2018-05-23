@@ -229,6 +229,10 @@ Important Notes
 
 Version History
 ---------------
+version *next* (in progress)
+    - Added a settable notification function (thx @ZuluPro)
+    - Added automatic test and code coverage system (thx @ZuluPro)
+
 version 0.6.5
     - Added support for Django 2+ (thx @hebertjulio and @llann)
 
