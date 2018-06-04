@@ -20,7 +20,7 @@ fake = faker.Faker()
 def make_base64_img():
     params = {'format': 'PNG'}
     img = ImageField()._make_data(params)
-    base64_img = base64.b64encode(img)
+    base64_img = base64.b64encode(img).decode()
     return 'image/png;base64,%s' % base64_img
 
 
@@ -52,7 +52,7 @@ class PostFeedbackViewTest(TestCase):
                                     HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(response.status_code, 200)
         feedback = Feedback.objects.last()
-        self.assertIsNotNone(feedback)
+        self.assertIsNotNone(feedback, response.content)
         self.assertEqual(feedback.user, user)
         self.assertEqual(len(mail.outbox), 1)
 
@@ -71,7 +71,7 @@ class PostFeedbackViewTest(TestCase):
                                     HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(response.status_code, 200)
         feedback = Feedback.objects.last()
-        self.assertIsNotNone(feedback)
+        self.assertIsNotNone(feedback, response.content)
         self.assertIsNone(feedback.user)
         self.assertEqual(feedback.email, email)
         self.assertEqual(len(mail.outbox), 1)
