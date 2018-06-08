@@ -3,6 +3,7 @@ try:
     from django.core.urlresolvers import reverse_lazy as reverse
 except ImportError:
     from django.urls import reverse_lazy as reverse
+
 from tellme.models import Feedback
 from tellme.tests import factories
 

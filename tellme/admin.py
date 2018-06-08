@@ -1,8 +1,10 @@
 import json
 
 from django.contrib import admin
-from .models import Feedback
+from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _, pgettext_lazy
+
+from .models import Feedback
 
 
 # Display an html table from a dict
@@ -43,10 +45,14 @@ class FeedbackAdmin(admin.ModelAdmin):
 
     def acknowledge(self, request, queryset):
         queryset.update(ack=True)
+        messages.info(request, _("Feedback(s) has been acknowledged."),
+                      fail_silently=True)
     acknowledge.short_description = _("Acknowledge selected feedbacks")
 
     def unacknowledge(self, request, queryset):
         queryset.update(ack=False)
+        messages.info(request, _("Feedback(s) has been unacknowledged."),
+                      fail_silently=True)
     unacknowledge.short_description = _("Unacknowledge selected feedbacks")
 
     def screenshot_thumb(self, feedback):
