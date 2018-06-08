@@ -32,12 +32,22 @@ def pretty_items(r, d, nametag="<strong>%s: </strong>", itemtag='<li>%s</li>\n',
 
 
 class FeedbackAdmin(admin.ModelAdmin):
-    list_display = ("comment", "url", "screenshot_thumb", "user", "email", "created")
-    list_filter = ("created", "user", "url")
+    list_display = ("comment", "url", "screenshot_thumb", "user", "email", "created", "ack")
+    list_filter = ("created", "ack", "user", "url")
     search_fields = ("comment", "user__email", "user__name")
     readonly_fields = ("comment", "url", "user", "browser_html", "screenshot_thumb")
     exclude = ('browser', 'screenshot')
     ordering = ("-created",)
+
+    actions = ('acknowledge', 'unacknowledge')
+
+    def acknowledge(self, request, queryset):
+        queryset.update(ack=True)
+    acknowledge.short_description = _("Acknowledge selected feedbacks")
+
+    def unacknowledge(self, request, queryset):
+        queryset.update(ack=False)
+    unacknowledge.short_description = _("Unacknowledge selected feedbacks")
 
     def screenshot_thumb(self, feedback):
         if feedback.screenshot:
@@ -52,5 +62,6 @@ class FeedbackAdmin(admin.ModelAdmin):
             return u''.join(r)
     browser_html.allow_tags = True
     browser_html.short_description = pgettext_lazy("Admin model", "Browser Info")
+
 
 admin.site.register(Feedback, FeedbackAdmin)
