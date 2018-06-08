@@ -17,12 +17,14 @@ class Feedback(models.Model):
     email = models.EmailField(max_length=254, blank=True, null=True)
     created = models.DateTimeField(_('Creation date'), auto_now_add=True)
 
+    ack = models.BooleanField(_('Acknowledgement'), default=False)
+
     class Meta:
         verbose_name = _("feedback")
         verbose_name_plural = _("feedbacks")
 
     def __str__(self):
-        return '%s: %s' % (self.created, url)
+        return '%s: %s' % (self.created, self.url)
 
 
 @receiver(post_delete, sender=Feedback)
