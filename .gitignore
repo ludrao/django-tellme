@@ -7,3 +7,5 @@ __pycache__/
 venv
 *.sw[pon]
 .coverage
+.tox/
+tellme/screenshots/
