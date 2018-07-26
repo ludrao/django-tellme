@@ -3,6 +3,7 @@ import json
 from django.contrib import admin
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _, pgettext_lazy
+from .models import Feedback
 from django.utils.safestring import mark_safe
 
 
