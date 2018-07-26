@@ -3,8 +3,7 @@ import json
 from django.contrib import admin
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _, pgettext_lazy
-
-from .models import Feedback
+from django.utils.safestring import mark_safe
 
 
 # Display an html table from a dict
@@ -58,7 +57,7 @@ class FeedbackAdmin(admin.ModelAdmin):
 
     def screenshot_thumb(self, feedback):
         if feedback.screenshot:
-            return u'<a href="%s" ><img src="%s" width="100"/></a>' % (feedback.screenshot.url, feedback.screenshot.url)
+            return mark_safe(u'<a href="%s" ><img src="%s" width="100"/></a>' % (feedback.screenshot.url, feedback.screenshot.url))
     screenshot_thumb.allow_tags = True
     screenshot_thumb.short_description = _("Screenshot")
 
@@ -66,8 +65,7 @@ class FeedbackAdmin(admin.ModelAdmin):
         if feedback.browser:
             r = []
             pretty_items(r, json.loads(feedback.browser))
-            return u''.join(r)
-    browser_html.allow_tags = True
+            return mark_safe(u''.join(r))
     browser_html.short_description = pgettext_lazy("Admin model", "Browser Info")
 
 
