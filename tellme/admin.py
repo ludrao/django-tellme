@@ -44,19 +44,19 @@ class FeedbackAdmin(admin.ModelAdmin):
     ordering = ("-created",)
     date_hierarchy = 'created'
 
-    actions = ('acknowledge', 'unacknowledge')
+    actions = ('resolve', 'unresolve')
 
-    def acknowledge(self, request, queryset):
+    def resolve(self, request, queryset):
         queryset.update(ack=True)
-        messages.info(request, _("Feedback(s) has been acknowledged."),
+        messages.info(request, _("Feedback(s) have been resolved."),
                       fail_silently=True)
-    acknowledge.short_description = _("Acknowledge selected feedbacks")
+    resolve.short_description = _("Resolve selected feedbacks")
 
-    def unacknowledge(self, request, queryset):
+    def unresolve(self, request, queryset):
         queryset.update(ack=False)
-        messages.info(request, _("Feedback(s) has been unacknowledged."),
+        messages.info(request, _("Feedback(s) has been unresolved."),
                       fail_silently=True)
-    unacknowledge.short_description = _("Unacknowledge selected feedbacks")
+    unresolve.short_description = _("Unresolve selected feedbacks")
 
     def screenshot_thumb(self, feedback):
         if feedback.screenshot:

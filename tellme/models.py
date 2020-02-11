@@ -17,7 +17,7 @@ class Feedback(models.Model):
     email = models.EmailField(max_length=254, blank=True, null=True)
     created = models.DateTimeField(_('Creation date'), auto_now_add=True, db_index=True)
 
-    ack = models.BooleanField(_('Acknowledgement'), default=False)
+    ack = models.BooleanField(_('Resolved'), default=False)
 
     class Meta:
         verbose_name = _("feedback")

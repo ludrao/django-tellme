@@ -8,7 +8,7 @@ from tellme.models import Feedback
 from tellme.tests import factories
 
 
-class AdminAcknowledgeActionTest(TestCase):
+class AdminResolveActionTest(TestCase):
     url = reverse('admin:tellme_feedback_changelist')
 
     def test_action(self):
@@ -16,7 +16,7 @@ class AdminAcknowledgeActionTest(TestCase):
         feedback = factories.FeedbackFactory(ack=False)
         self.client.force_login(user)
         data = {
-            'action': 'acknowledge',
+            'action': 'resolve',
             '_selected_action': [feedback.id],
         }
         response = self.client.post(self.url, data, follow=True)
@@ -25,7 +25,7 @@ class AdminAcknowledgeActionTest(TestCase):
         self.assertTrue(feedback.ack)
 
 
-class AdminUnacknowledgeActionTest(TestCase):
+class AdminUnresolveActionTest(TestCase):
     url = reverse('admin:tellme_feedback_changelist')
 
     def test_action(self):
@@ -33,7 +33,7 @@ class AdminUnacknowledgeActionTest(TestCase):
         feedback = factories.FeedbackFactory(ack=True)
         self.client.force_login(user)
         data = {
-            'action': 'unacknowledge',
+            'action': 'unresolve',
             '_selected_action': [feedback.id],
         }
         response = self.client.post(self.url, data, follow=True)

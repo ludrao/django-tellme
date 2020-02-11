@@ -21,6 +21,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='feedback',
             name='ack',
-            field=models.BooleanField(default=False, verbose_name='Acknowledgement'),
+            field=models.BooleanField(default=False, verbose_name='Resolved'),
         ),
     ]
