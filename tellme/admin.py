@@ -54,7 +54,7 @@ class FeedbackAdmin(admin.ModelAdmin):
 
     def unresolve(self, request, queryset):
         queryset.update(ack=False)
-        messages.info(request, _("Feedback(s) has been unresolved."),
+        messages.info(request, _("Feedback(s) have been unresolved."),
                       fail_silently=True)
     unresolve.short_description = _("Unresolve selected feedbacks")
 
