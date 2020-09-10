@@ -3,6 +3,7 @@ import json
 import django
 from django.contrib import admin
 from django.contrib import messages
+from django.utils.html import escape
 from django.utils.translation import ugettext_lazy as _, pgettext_lazy
 from django.utils.safestring import mark_safe
 
@@ -16,12 +17,12 @@ def pretty_items(r, d, nametag="<strong>%s: </strong>", itemtag='<li>%s</li>\n',
     if isinstance(d, dict):
         r.append(blocktag[0])
         for k, v in d.items():
-            name = nametag % k
+            name = nametag % escape(k)
             if isinstance(v, dict) or isinstance(v, list):
                 r.append(itemtag % name)
                 pretty_items(r, v, nametag, itemtag, valuetag, blocktag)
             else:
-                value = valuetag % v
+                value = valuetag % escape(v)
                 r.append(itemtag % (name + value))
         r.append(blocktag[1])
     elif isinstance(d, list):
@@ -31,7 +32,7 @@ def pretty_items(r, d, nametag="<strong>%s: </strong>", itemtag='<li>%s</li>\n',
                 r.append(itemtag % " - ")
                 pretty_items(r, i, nametag, itemtag, valuetag, blocktag)
             else:
-                r.append(itemtag % i)
+                r.append(itemtag % escape(i))
         r.append(blocktag[1])
 
 
