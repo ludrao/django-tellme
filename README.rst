@@ -229,7 +229,8 @@ Important Notes
 
 Version History
 ---------------
-version *next* (in progress)
+version 0.6.6
+    - Added automatic feedback button insert (thx @thenewguy)
     - Added a settable notification function (thx @ZuluPro)
     - Added automatic test and code coverage system (thx @ZuluPro)
 
