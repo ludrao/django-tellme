@@ -5,6 +5,11 @@ from django.dispatch.dispatcher import receiver
 from django.utils.translation import ugettext_lazy as _
 from six import python_2_unicode_compatible
 
+try:
+    from django.core.urlresolvers import reverse
+except ImportError:
+    from django.urls import reverse
+
 
 @python_2_unicode_compatible
 class Feedback(models.Model):
@@ -25,6 +30,9 @@ class Feedback(models.Model):
 
     def __str__(self):
         return '%s: %s' % (self.created, self.url)
+    
+    def get_screenshot_url(self):
+        return reverse('tellme:get_feedback_screenshot')
 
 
 @receiver(post_delete, sender=Feedback)
