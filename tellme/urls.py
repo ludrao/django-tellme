@@ -6,7 +6,7 @@ except ImportError:
     from django.conf.urls import url, include
 
 
-from .views import post_feedback
+from .views import get_feedback_screenshot, post_feedback
 
 
 if django.VERSION[0] < 2:
