@@ -44,6 +44,13 @@
     <script src="{% static 'tellme/feedback.min.js' %}"></script>
     <script type="text/javascript">
         $(function () {
+            if (!$('#feedback-btn').length) {
+                var $btn = $("{% filter escapejs %}{% include 'tellme/tpl-button.html' %}{% endfilter %}");
+                $('body').append($btn);
+                if (!$('#feedback-btn').length) {
+                    $btn.attr('id', 'feedback-btn');
+                }
+            }
             $.feedback({
                 ajaxURL: "{% url 'tellme:post_feedback' %}",
                 html2canvasURL: "{% static 'tellme/html2canvas.min.js' %}",
