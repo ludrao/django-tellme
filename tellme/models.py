@@ -32,7 +32,7 @@ class Feedback(models.Model):
         return '%s: %s' % (self.created, self.url)
     
     def get_screenshot_url(self):
-        return reverse('tellme:get_feedback_screenshot')
+        return reverse('tellme:get_feedback_screenshot', kwargs={'pk': self.pk})
 
 
 @receiver(post_delete, sender=Feedback)
