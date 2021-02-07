@@ -191,6 +191,36 @@ The feedback popup contains 4 steps + an error screen, that can be redefined. Lo
 As an easy way to start you can copy one of the above file in your template directory and modify it incrementally. Please note that you need to keep the same directory structure (i.e. tellme/tpl-xxx.html), and that your app has to be listed first in the ``INSTALLED_APPS`` list so that it takes this modified template file instead of the original tellme template file.
 
 
+How to restrict access to submitted screenshots
+-----------------------------------------------
+By default, we redirect to the url provided by the file storage backend.
+However, you can replace the view used to serve the screen shots to enforce
+viewer permission checks. You would also be responsible to ensure screenshot
+images are not publicly accessible via the file storage backend.
+
+Modify the following code in your `urls.py` to override the default view:
+
+  .. code:: python
+
+    from tellme.urls import tellme_urlpatterns
+    
+    from .views import feedback_screenshot_view
+    
+    tellme_overrides = (tellme_urlpatterns + [
+        url(
+            r'^screenshot/(?P<pk>\d+)/$',
+            feedback_screenshot_view,
+            name='get_feedback_screenshot',
+        ),
+    ], 'tellme')
+    
+    urlpatterns = [
+        ...
+        url(r'^tellme/', include(tellme_overrides)),
+        ...
+    ]
+
+
 Email notifications
 -------------------
 
