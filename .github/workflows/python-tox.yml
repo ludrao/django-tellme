@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python: [2.7, 3.7, 3.8]
+        python: [3.6, 3.7, 3.8]
 
     steps:
       - uses: actions/checkout@v2
@@ -20,4 +20,4 @@ jobs:
         run: pip install tox
       - name: Run Tox
         # Run tox using the version of Python in `PATH`
-        run: tox -e py
+        run: tox -e py3
