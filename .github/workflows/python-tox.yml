@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         python: ["3.6"]
-        toxenv: ['django30', 'django31','djangomaster']
+        toxenv: ['py-django30', 'py-django31','py-djangomaster']
 
     steps:
       - uses: actions/checkout@v2
@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - name: Install Tox and any other packages
-        run: pip install tox tox-gh-actions
+        run: pip install tox
       - name: Run Tox
         # Run tox using the version of Python in `PATH`
         run: tox -vv
