@@ -1,18 +1,18 @@
 {% load static %}
 
-{#Extend with an empty block or replace with your version of jquery#}
-{%  block jquery %}
+{# Extend with an empty block or replace with your version of jquery #}
+{% block jquery %}
     <script src="{% static 'tellme/vendor/jquery-3.5.1.js' %}"></script>
 {% endblock %}
 
 {# Extend with an empty block if you do not need to support IE11 or have other means to deal with ES6 Promise #}
-{%  block promise-polyfill %}
+{% block promise-polyfill %}
     <script src="{% static 'tellme/vendor/es6-promise.js' %}"></script>
     <script src="{% static 'tellme/vendor/es6-promise.auto.js' %}"></script>
 {% endblock %}
 
 {# Extend with an empty block if you other mean to deal with AJAX post request in Django #}
-{%  block ajax_csrf %}
+{% block ajax_csrf %}
     <script type="text/javascript">
         // using jQuery
         function getCookie(name) {
@@ -74,4 +74,4 @@
             });
         });
     </script>
-{%  endblock %}
+{% endblock %}
