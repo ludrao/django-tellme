@@ -9,6 +9,7 @@ jobs:
     strategy:
       matrix:
         python-version: [3.6]
+        django: [30,31]
 
     steps:
       - uses: actions/checkout@v2
@@ -21,3 +22,6 @@ jobs:
       - name: Run Tox
         # Run tox using the version of Python in `PATH`
         run: python -m tox -vv
+        env:
+          DJANGO: ${{ matrix.django }}
+
