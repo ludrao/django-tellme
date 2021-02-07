@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python: [3.6, 3.7, 3.8]
+        python: [3.6]
         toxenv: ['py3-django30', 'py3-django31','py3-djangomaster']
 
     steps:
