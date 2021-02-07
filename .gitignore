@@ -1,6 +1,4 @@
 dist/
-build/
-django-tellme-*/
 django_tellme.egg-info/
 .DS_Store
 .idea/
