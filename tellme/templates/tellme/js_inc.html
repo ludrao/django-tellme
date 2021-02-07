@@ -7,8 +7,8 @@
 
 {# Extend with an empty block if you do not need to support IE11 or have other means to deal with ES6 Promise #}
 {% block promise-polyfill %}
-    <script src="{% static 'tellme/vendor/es6-promise.js' %}"></script>
-    <script src="{% static 'tellme/vendor/es6-promise.auto.js' %}"></script>
+    <script src="{% static 'tellme/vendor/es6-promise/es6-promise.js' %}"></script>
+    <script src="{% static 'tellme/vendor/es6-promise/es6-promise.auto.js' %}"></script>
 {% endblock %}
 
 {# Extend with an empty block if you other mean to deal with AJAX post request in Django #}
