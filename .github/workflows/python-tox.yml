@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         python: [3.6]
-        toxenv: ['py3-django30', 'py3-django31','py3-djangomaster']
+        toxenv: ['py-django30', 'py-django31','py-djangomaster']
 
     steps:
       - uses: actions/checkout@v2
