@@ -5,6 +5,12 @@
     <script src="{% static 'tellme/vendor/jquery-3.5.1.js' %}"></script>
 {% endblock %}
 
+{# Extend with an empty block if you have other means to deal with ES6 Promise #}
+{%  block promise-polyfill %}
+    <script src="{% static 'tellme/vendor/es6-promise.js' %}"></script>
+    <script src="{% static 'tellme/vendor/es6-promise.auto.js' %}"></script>
+{% endblock %}
+
 {# Extend with an empty block if you other mean to deal with AJAX post request in Django #}
 {%  block ajax_csrf %}
     <script type="text/javascript">
