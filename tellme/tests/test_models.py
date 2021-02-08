@@ -1,6 +1,16 @@
+from unittest import mock
 from django.test import TestCase
 from tellme.models import Feedback
 from tellme.tests.factories import FeedbackFactory
+
+
+class FeedbackScreenshotMethodsTest(TestCase):
+    @mock.patch('tellme.models.reverse')
+    def test_get_screenshot_url(self, mocked_reverse):
+        feedback = FeedbackFactory()
+        url = feedback.get_screenshot_url()
+        self.assertEqual(url, '/tellme/get_feedback_screenshot/%s/' % feedback.pk)
+        mocked_reverse.assert_called_once_with('tellme:get_feedback_screenshot', kwargs={'pk': feedback.pk})
 
 
 class FeedbackScreenshotDeleteTest(TestCase):
