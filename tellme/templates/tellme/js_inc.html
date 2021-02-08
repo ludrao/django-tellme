@@ -47,7 +47,7 @@
 
 {#This is the actual code that enables the tellme plugin#}
 {% block enable_tellme %}
-    <script src="{% static 'tellme/feedback.min.js' %}"></script>
+    <script src="{% static 'tellme/feedback/dist/feedback.js' %}"></script>
     <script type="text/javascript">
         $(function () {
             if (!$('#feedback-btn').length) {
