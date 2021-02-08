@@ -1,6 +1,7 @@
 {
   "name": "tellme",
   "version": "0.0.1",
+  "browser": "tellme/static/tellme/feedback/dist/feedback.js",
   "scripts": {
     "build": "webpack",
     "test": "echo \"Warning: no test specified\""
