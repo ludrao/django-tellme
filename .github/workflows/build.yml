@@ -17,12 +17,14 @@ jobs:
           npm install
           npm run build --if-present
           npm test
+      - name: Create artifact
+        run: zip artifact.zip ./tellme/static/tellme/feedback/dist/feedback*
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
           name: frontend-assets
           retention-days: 5
-          path: ./tellme/static/tellme/feedback/dist/feedback*
+          path: artifact.zip
   backend:
     needs: frontend
     runs-on: ubuntu-latest
