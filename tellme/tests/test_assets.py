@@ -8,7 +8,7 @@ MISSING_ASSET = 'Frontend asset missing. Did you build it?'
 class AssetTests(TestCase):
     def test_finders_feedbackjs(self):
         result = finders.find('tellme/feedback/dist/feedback.js')
-        self.assertTrue(result, MISSING_ASSET
+        self.assertTrue(result, MISSING_ASSET)
     
     def test_finders_feedbackcss(self):
         result = finders.find('tellme/feedback/dist/feedback.css')
