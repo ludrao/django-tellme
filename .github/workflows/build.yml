@@ -55,4 +55,4 @@ jobs:
         with:
           name: backend-assets
           retention-days: 5
-          path: '~/.tox/*'
+          path: '~/.tox/distshare'
