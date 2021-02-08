@@ -20,7 +20,7 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: assets
+          name: frontend-assets
           retention-days: 5
           path: ./tellme/static/tellme/feedback/dist/feedback*
   backend:
@@ -44,9 +44,15 @@ jobs:
       - name: Download frontend dist
         uses: actions/download-artifact@v2
         with:
-          name: assets
+          name: frontend-assets
       - name: Run Tox
         # Run tox using the version of Python in `PATH`
         run: python -m tox -vv
         env:
           DJANGO: ${{ matrix.django }}
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: backend-assets
+          retention-days: 5
+          path: ./dist/*
