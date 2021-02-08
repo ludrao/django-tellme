@@ -95,3 +95,17 @@ class PostFeedbackViewTest(TestCase):
         exists = Feedback.objects.exists()
         self.assertFalse(exists)
         self.assertEqual(len(mail.outbox), 0)
+
+
+class GetFeedbackScreenshotViewTest(TestCase):
+    def test_screenshot_view(self):
+        feedback = Feedback.objects.create(
+            url=fake.url(),
+            browser=fake.user_agent(),
+            note=fake.sentence(),
+            img=make_base64_img(),
+            email=fake.email(),
+        )
+        response = self.client.get(feedback.get_screenshot_url())
+        self.assertEqual(response.status_code, 301)
+        self.assertEqual(response['Location'], feedback.screenshot.url)

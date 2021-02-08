@@ -5,9 +5,11 @@ import importlib
 from django.conf import settings
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.core.files.base import ContentFile
+from django.shortcuts import redirect, get_object_or_404
 from django.utils.crypto import get_random_string
 
 from tellme.forms import FeedbackForm
+from tellme.models import Feedback
 from tellme import mail
 
 
@@ -49,3 +51,8 @@ def post_feedback(request):
 
     else:
         return HttpResponseBadRequest()
+
+
+def get_feedback_screenshot(request, pk):
+    instance = get_object_or_404(Feedback, pk=pk)
+    return redirect(instance.screenshot.url)

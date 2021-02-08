@@ -62,9 +62,9 @@ class FeedbackAdmin(admin.ModelAdmin):
     def screenshot_thumb(self, feedback):
         if feedback.screenshot:
             if django.VERSION[0] < 2:
-                return u'<a href="%s" ><img src="%s" width="100"/></a>' % (feedback.screenshot.url, feedback.screenshot.url)
+                return u'<a href="%s" ><img src="%s" width="100"/></a>' % (feedback.get_screenshot_url(), feedback.get_screenshot_url())
             else:
-                return mark_safe(u'<a href="%s" ><img src="%s" width="100"/></a>' % (feedback.screenshot.url, feedback.screenshot.url))
+                return mark_safe(u'<a href="%s" ><img src="%s" width="100"/></a>' % (feedback.get_screenshot_url(), feedback.get_screenshot_url()))
 
     screenshot_thumb.allow_tags = True
     screenshot_thumb.short_description = _("Screenshot")
