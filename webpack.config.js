@@ -19,7 +19,7 @@ module.exports = [
       },
       output: {
         filename: 'feedback.js',
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'tellme/static/tellme/feedback/dist'),
       },
       optimization: {
         minimize: false
@@ -51,7 +51,7 @@ module.exports = [
         extensions: ['.css', '.scss'],
       },
       output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'tellme/static/tellme/feedback/dist'),
       },
       optimization: {
         minimize: false
