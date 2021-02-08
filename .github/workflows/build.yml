@@ -47,6 +47,8 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: frontend-assets
+      - name: Unpack artifact
+        run: unzip artifact.zip
       - name: Run Tox
         # Run tox using the version of Python in `PATH`
         run: python -m tox -vv
