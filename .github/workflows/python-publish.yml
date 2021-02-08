@@ -6,7 +6,6 @@ name: Upload Python Package
 on:
   release:
     types: [created]
-  workflow_dispatch:
 
 jobs:
   deploy:
@@ -29,4 +28,4 @@ jobs:
         TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
       run: |
         python -m build --sdist
-        twine upload --repository testpypi dist/*
+        twine upload dist/*
