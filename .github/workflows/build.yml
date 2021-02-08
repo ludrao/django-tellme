@@ -22,4 +22,4 @@ jobs:
         with:
           name: dist
           retention-days: 5
-          path: ./tellme/static/tellme/feedback/dist/*
+          path: ./tellme/static/tellme/feedback/dist/feedback*
