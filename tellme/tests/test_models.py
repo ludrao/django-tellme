@@ -3,9 +3,14 @@ from django.test import TestCase
 from tellme.models import Feedback
 from tellme.tests.factories import FeedbackFactory
 
+try:
+    from django.core.urlresolvers import reverse
+except ImportError:
+    from django.urls import reverse
+
 
 class FeedbackScreenshotMethodsTest(TestCase):
-    @mock.patch('tellme.models.reverse')
+    @mock.patch('tellme.models.reverse', wraps=reverse)
     def test_get_screenshot_url(self, mocked_reverse):
         feedback = FeedbackFactory()
         url = feedback.get_screenshot_url()
