@@ -44,9 +44,12 @@
     </script>
 {% endblock %}
 
+{% block feedback %}
+    <script src="{% static 'tellme/vendor/feedback/feedback.js' %}"></script>
+{% endblock %}
+
 {#This is the actual code that enables the tellme plugin#}
 {% block enable_tellme %}
-    <script src="{% static 'tellme/vendor/feedback/feedback.js' %}"></script>
     <script type="text/javascript">
         $(function () {
             if (!$('#feedback-btn').length) {
