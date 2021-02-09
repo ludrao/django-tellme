@@ -259,8 +259,14 @@ Important Notes
 
 Version History
 ---------------
+version 0.7.0
+    -- Updated and Fixed the tox test suite (thx @thenewguy)
+    -- Added GitHub action to run test and deploy to PiPy
+    -- Updated all upstream project javascript code
+
 version 0.6.7
     -- Fixed missing migration files (thx @thenewguy)
+
 version 0.6.6
     - Added automatic feedback button insert (thx @thenewguy)
     - Added a settable notification function (thx @ZuluPro)
