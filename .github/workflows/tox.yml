@@ -57,7 +57,7 @@ jobs:
           DJANGO: ${{ matrix.django }}
 
   prerelease:
-    needs: backend
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Download sdist
