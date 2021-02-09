@@ -1,56 +1,21 @@
 /*
-  html2canvas 0.5.0-alpha1 <http://html2canvas.hertzen.com>
-  Copyright (c) 2015 Niklas von Hertzen
+  html2canvas 0.5.0-beta3 <http://html2canvas.hertzen.com>
+  Copyright (c) 2016 Niklas von Hertzen
 
-  Released under MIT License
+  Released under  License
 */
 
-(function(window, document, exports, global, define, undefined){
-
-/*!
- * @overview es6-promise - a tiny implementation of Promises/A+.
- * @copyright Copyright (c) 2014 Yehuda Katz, Tom Dale, Stefan Penner and contributors (Conversion to ES6 API by Jake Archibald)
- * @license   Licensed under MIT license
- *            See https://raw.githubusercontent.com/jakearchibald/es6-promise/master/LICENSE
- * @version   2.0.1
- */
-
-(function(){function r(a,b){n[l]=a;n[l+1]=b;l+=2;2===l&&A()}function s(a){return"function"===typeof a}function F(){return function(){process.nextTick(t)}}function G(){var a=0,b=new B(t),c=document.createTextNode("");b.observe(c,{characterData:!0});return function(){c.data=a=++a%2}}function H(){var a=new MessageChannel;a.port1.onmessage=t;return function(){a.port2.postMessage(0)}}function I(){return function(){setTimeout(t,1)}}function t(){for(var a=0;a<l;a+=2)(0,n[a])(n[a+1]),n[a]=void 0,n[a+1]=void 0;
-l=0}function p(){}function J(a,b,c,d){try{a.call(b,c,d)}catch(e){return e}}function K(a,b,c){r(function(a){var e=!1,f=J(c,b,function(c){e||(e=!0,b!==c?q(a,c):m(a,c))},function(b){e||(e=!0,g(a,b))});!e&&f&&(e=!0,g(a,f))},a)}function L(a,b){1===b.a?m(a,b.b):2===a.a?g(a,b.b):u(b,void 0,function(b){q(a,b)},function(b){g(a,b)})}function q(a,b){if(a===b)g(a,new TypeError("You cannot resolve a promise with itself"));else if("function"===typeof b||"object"===typeof b&&null!==b)if(b.constructor===a.constructor)L(a,
-b);else{var c;try{c=b.then}catch(d){v.error=d,c=v}c===v?g(a,v.error):void 0===c?m(a,b):s(c)?K(a,b,c):m(a,b)}else m(a,b)}function M(a){a.f&&a.f(a.b);x(a)}function m(a,b){void 0===a.a&&(a.b=b,a.a=1,0!==a.e.length&&r(x,a))}function g(a,b){void 0===a.a&&(a.a=2,a.b=b,r(M,a))}function u(a,b,c,d){var e=a.e,f=e.length;a.f=null;e[f]=b;e[f+1]=c;e[f+2]=d;0===f&&a.a&&r(x,a)}function x(a){var b=a.e,c=a.a;if(0!==b.length){for(var d,e,f=a.b,g=0;g<b.length;g+=3)d=b[g],e=b[g+c],d?C(c,d,e,f):e(f);a.e.length=0}}function D(){this.error=
-null}function C(a,b,c,d){var e=s(c),f,k,h,l;if(e){try{f=c(d)}catch(n){y.error=n,f=y}f===y?(l=!0,k=f.error,f=null):h=!0;if(b===f){g(b,new TypeError("A promises callback cannot return that same promise."));return}}else f=d,h=!0;void 0===b.a&&(e&&h?q(b,f):l?g(b,k):1===a?m(b,f):2===a&&g(b,f))}function N(a,b){try{b(function(b){q(a,b)},function(b){g(a,b)})}catch(c){g(a,c)}}function k(a,b,c,d){this.n=a;this.c=new a(p,d);this.i=c;this.o(b)?(this.m=b,this.d=this.length=b.length,this.l(),0===this.length?m(this.c,
-this.b):(this.length=this.length||0,this.k(),0===this.d&&m(this.c,this.b))):g(this.c,this.p())}function h(a){O++;this.b=this.a=void 0;this.e=[];if(p!==a){if(!s(a))throw new TypeError("You must pass a resolver function as the first argument to the promise constructor");if(!(this instanceof h))throw new TypeError("Failed to construct 'Promise': Please use the 'new' operator, this object constructor cannot be called as a function.");N(this,a)}}var E=Array.isArray?Array.isArray:function(a){return"[object Array]"===
-Object.prototype.toString.call(a)},l=0,w="undefined"!==typeof window?window:{},B=w.MutationObserver||w.WebKitMutationObserver,w="undefined"!==typeof Uint8ClampedArray&&"undefined"!==typeof importScripts&&"undefined"!==typeof MessageChannel,n=Array(1E3),A;A="undefined"!==typeof process&&"[object process]"==={}.toString.call(process)?F():B?G():w?H():I();var v=new D,y=new D;k.prototype.o=function(a){return E(a)};k.prototype.p=function(){return Error("Array Methods must be provided an Array")};k.prototype.l=
-function(){this.b=Array(this.length)};k.prototype.k=function(){for(var a=this.length,b=this.c,c=this.m,d=0;void 0===b.a&&d<a;d++)this.j(c[d],d)};k.prototype.j=function(a,b){var c=this.n;"object"===typeof a&&null!==a?a.constructor===c&&void 0!==a.a?(a.f=null,this.g(a.a,b,a.b)):this.q(c.resolve(a),b):(this.d--,this.b[b]=this.h(a))};k.prototype.g=function(a,b,c){var d=this.c;void 0===d.a&&(this.d--,this.i&&2===a?g(d,c):this.b[b]=this.h(c));0===this.d&&m(d,this.b)};k.prototype.h=function(a){return a};
-k.prototype.q=function(a,b){var c=this;u(a,void 0,function(a){c.g(1,b,a)},function(a){c.g(2,b,a)})};var O=0;h.all=function(a,b){return(new k(this,a,!0,b)).c};h.race=function(a,b){function c(a){q(e,a)}function d(a){g(e,a)}var e=new this(p,b);if(!E(a))return (g(e,new TypeError("You must pass an array to race.")), e);for(var f=a.length,h=0;void 0===e.a&&h<f;h++)u(this.resolve(a[h]),void 0,c,d);return e};h.resolve=function(a,b){if(a&&"object"===typeof a&&a.constructor===this)return a;var c=new this(p,b);
-q(c,a);return c};h.reject=function(a,b){var c=new this(p,b);g(c,a);return c};h.prototype={constructor:h,then:function(a,b){var c=this.a;if(1===c&&!a||2===c&&!b)return this;var d=new this.constructor(p),e=this.b;if(c){var f=arguments[c-1];r(function(){C(c,d,f,e)})}else u(this,d,a,b);return d},"catch":function(a){return this.then(null,a)}};var z={Promise:h,polyfill:function(){var a;a="undefined"!==typeof global?global:"undefined"!==typeof window&&window.document?window:self;"Promise"in a&&"resolve"in
-a.Promise&&"reject"in a.Promise&&"all"in a.Promise&&"race"in a.Promise&&function(){var b;new a.Promise(function(a){b=a});return s(b)}()||(a.Promise=h)}};"function"===typeof define&&define.amd?define(function(){return z}):"undefined"!==typeof module&&module.exports?module.exports=z:"undefined"!==typeof this&&(this.ES6Promise=z);}).call(window);
-if (window) {
-    window.ES6Promise.polyfill();
-}
-
-
-if (typeof(document) === "undefined" || typeof(Object.create) !== "function" || typeof(document.createElement("canvas").getContext) !== "function") {
-    (window || module.exports).html2canvas = function() {
-        return Promise.reject("No canvas support");
-    };
-    return;
-}
-
-/*! https://mths.be/punycode v1.3.1 by @mathias */
+!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.html2canvas=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
+(function (global){
+/*! http://mths.be/punycode v1.2.4 by @mathias */
 ;(function(root) {
 
 	/** Detect free variables */
-	var freeExports = typeof exports == 'object' && exports &&
-		!exports.nodeType && exports;
+	var freeExports = typeof exports == 'object' && exports;
 	var freeModule = typeof module == 'object' && module &&
-		!module.nodeType && module;
+		module.exports == freeExports && module;
 	var freeGlobal = typeof global == 'object' && global;
-	if (
-		freeGlobal.global === freeGlobal ||
-		freeGlobal.window === freeGlobal ||
-		freeGlobal.self === freeGlobal
-	) {
+	if (freeGlobal.global === freeGlobal || freeGlobal.window === freeGlobal) {
 		root = freeGlobal;
 	}
 
@@ -76,8 +41,8 @@ if (typeof(document) === "undefined" || typeof(Object.create) !== "function" || 
 
 	/** Regular expressions */
 	regexPunycode = /^xn--/,
-	regexNonASCII = /[^\x20-\x7E]/, // unprintable ASCII chars + non-ASCII chars
-	regexSeparators = /[\x2E\u3002\uFF0E\uFF61]/g, // RFC 3490 separators
+	regexNonASCII = /[^ -~]/, // unprintable ASCII chars + non-ASCII chars
+	regexSeparators = /\x2E|\u3002|\uFF0E|\uFF61/g, // RFC 3490 separators
 
 	/** Error messages */
 	errors = {
@@ -116,35 +81,23 @@ if (typeof(document) === "undefined" || typeof(Object.create) !== "function" || 
 	 */
 	function map(array, fn) {
 		var length = array.length;
-		var result = [];
 		while (length--) {
-			result[length] = fn(array[length]);
+			array[length] = fn(array[length]);
 		}
-		return result;
+		return array;
 	}
 
 	/**
-	 * A simple `Array#map`-like wrapper to work with domain name strings or email
-	 * addresses.
+	 * A simple `Array#map`-like wrapper to work with domain name strings.
 	 * @private
-	 * @param {String} domain The domain name or email address.
+	 * @param {String} domain The domain name.
 	 * @param {Function} callback The function that gets called for every
 	 * character.
 	 * @returns {Array} A new string of characters returned by the callback
 	 * function.
 	 */
 	function mapDomain(string, fn) {
-		var parts = string.split('@');
-		var result = '';
-		if (parts.length > 1) {
-			// In email addresses, only the domain name should be punycoded. Leave
-			// the local part (i.e. everything up to `@`) intact.
-			result = parts[0] + '@';
-			string = parts[1];
-		}
-		var labels = string.split(regexSeparators);
-		var encoded = map(labels, fn).join('.');
-		return result + encoded;
+		return map(string.split(regexSeparators), fn).join('.');
 	}
 
 	/**
@@ -154,7 +107,7 @@ if (typeof(document) === "undefined" || typeof(Object.create) !== "function" || 
 	 * UCS-2 exposes as separate characters) into a single code point,
 	 * matching UTF-16.
 	 * @see `punycode.ucs2.encode`
-	 * @see <https://mathiasbynens.be/notes/javascript-encoding>
+	 * @see <http://mathiasbynens.be/notes/javascript-encoding>
 	 * @memberOf punycode.ucs2
 	 * @name decode
 	 * @param {String} string The Unicode input string (UCS-2).
@@ -363,8 +316,8 @@ if (typeof(document) === "undefined" || typeof(Object.create) !== "function" || 
 	}
 
 	/**
-	 * Converts a string of Unicode symbols (e.g. a domain name label) to a
-	 * Punycode string of ASCII-only symbols.
+	 * Converts a string of Unicode symbols to a Punycode string of ASCII-only
+	 * symbols.
 	 * @memberOf punycode
 	 * @param {String} input The string of Unicode symbols.
 	 * @returns {String} The resulting Punycode string of ASCII-only symbols.
@@ -477,18 +430,17 @@ if (typeof(document) === "undefined" || typeof(Object.create) !== "function" || 
 	}
 
 	/**
-	 * Converts a Punycode string representing a domain name or an email address
-	 * to Unicode. Only the Punycoded parts of the input will be converted, i.e.
-	 * it doesn't matter if you call it on a string that has already been
-	 * converted to Unicode.
+	 * Converts a Punycode string representing a domain name to Unicode. Only the
+	 * Punycoded parts of the domain name will be converted, i.e. it doesn't
+	 * matter if you call it on a string that has already been converted to
+	 * Unicode.
 	 * @memberOf punycode
-	 * @param {String} input The Punycoded domain name or email address to
-	 * convert to Unicode.
+	 * @param {String} domain The Punycode domain name to convert to Unicode.
 	 * @returns {String} The Unicode representation of the given Punycode
 	 * string.
 	 */
-	function toUnicode(input) {
-		return mapDomain(input, function(string) {
+	function toUnicode(domain) {
+		return mapDomain(domain, function(string) {
 			return regexPunycode.test(string)
 				? decode(string.slice(4).toLowerCase())
 				: string;
@@ -496,18 +448,15 @@ if (typeof(document) === "undefined" || typeof(Object.create) !== "function" || 
 	}
 
 	/**
-	 * Converts a Unicode string representing a domain name or an email address to
-	 * Punycode. Only the non-ASCII parts of the domain name will be converted,
-	 * i.e. it doesn't matter if you call it with a domain that's already in
-	 * ASCII.
+	 * Converts a Unicode string representing a domain name to Punycode. Only the
+	 * non-ASCII parts of the domain name will be converted, i.e. it doesn't
+	 * matter if you call it with a domain that's already in ASCII.
 	 * @memberOf punycode
-	 * @param {String} input The domain name or email address to convert, as a
-	 * Unicode string.
-	 * @returns {String} The Punycode representation of the given domain name or
-	 * email address.
+	 * @param {String} domain The domain name to convert, as a Unicode string.
+	 * @returns {String} The Punycode representation of the given domain name.
 	 */
-	function toASCII(input) {
-		return mapDomain(input, function(string) {
+	function toASCII(domain) {
+		return mapDomain(domain, function(string) {
 			return regexNonASCII.test(string)
 				? 'xn--' + encode(string)
 				: string;
@@ -523,11 +472,11 @@ if (typeof(document) === "undefined" || typeof(Object.create) !== "function" || 
 		 * @memberOf punycode
 		 * @type String
 		 */
-		'version': '1.3.1',
+		'version': '1.2.4',
 		/**
 		 * An object of methods to convert from JavaScript's internal character
 		 * representation (UCS-2) to Unicode code points, and back.
-		 * @see <https://mathiasbynens.be/notes/javascript-encoding>
+		 * @see <http://mathiasbynens.be/notes/javascript-encoding>
 		 * @memberOf punycode
 		 * @type Object
 		 */
@@ -552,8 +501,8 @@ if (typeof(document) === "undefined" || typeof(Object.create) !== "function" || 
 		define('punycode', function() {
 			return punycode;
 		});
-	} else if (freeExports && freeModule) {
-		if (module.exports == freeExports) { // in Node.js or RingoJS v0.8.0+
+	} else if (freeExports && !freeExports.nodeType) {
+		if (freeModule) { // in Node.js or RingoJS v0.8.0+
 			freeModule.exports = punycode;
 		} else { // in Narwhal or RingoJS v0.7.0-
 			for (key in punycode) {
@@ -566,156 +515,67 @@ if (typeof(document) === "undefined" || typeof(Object.create) !== "function" || 
 
 }(this));
 
-var html2canvasNodeAttribute = "data-html2canvas-node";
-var html2canvasCanvasCloneAttribute = "data-html2canvas-canvas-clone";
-var html2canvasCanvasCloneIndex = 0;
-var html2canvasCloneIndex = 0;
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],2:[function(_dereq_,module,exports){
+var log = _dereq_('./log');
 
-window.html2canvas = function(nodeList, options) {
-    var index = html2canvasCloneIndex++;
-    options = options || {};
-    if (options.logging) {
-        window.html2canvas.logging = true;
-        window.html2canvas.start = Date.now();
-    }
-
-    options.async = typeof(options.async) === "undefined" ? true : options.async;
-    options.allowTaint = typeof(options.allowTaint) === "undefined" ? false : options.allowTaint;
-    options.removeContainer = typeof(options.removeContainer) === "undefined" ? true : options.removeContainer;
-    options.javascriptEnabled = typeof(options.javascriptEnabled) === "undefined" ? false : options.javascriptEnabled;
-    options.imageTimeout = typeof(options.imageTimeout) === "undefined" ? 10000 : options.imageTimeout;
-    options.renderer = typeof(options.renderer) === "function" ? options.renderer : CanvasRenderer;
-    options.strict = !!options.strict;
-
-    if (typeof(nodeList) === "string") {
-        if (typeof(options.proxy) !== "string") {
-            return Promise.reject("Proxy must be used when rendering url");
-        }
-        var width = options.width != null ? options.width : window.innerWidth;
-        var height = options.height != null ? options.height : window.innerHeight;
-        return loadUrlDocument(absoluteUrl(nodeList), options.proxy, document, width, height, options).then(function(container) {
-            return renderWindow(container.contentWindow.document.documentElement, container, options, width, height);
-        });
-    }
-
-    var node = ((nodeList === undefined) ? [document.documentElement] : ((nodeList.length) ? nodeList : [nodeList]))[0];
-    node.setAttribute(html2canvasNodeAttribute + index, index);
-    return renderDocument(node.ownerDocument, options, node.ownerDocument.defaultView.innerWidth, node.ownerDocument.defaultView.innerHeight, index).then(function(canvas) {
-        if (typeof(options.onrendered) === "function") {
-            log("options.onrendered is deprecated, html2canvas returns a Promise containing the canvas");
-            options.onrendered(canvas);
-        }
-        return canvas;
-    });
-};
-
-window.html2canvas.punycode = this.punycode;
-window.html2canvas.proxy = {};
-
-function renderDocument(document, options, windowWidth, windowHeight, html2canvasIndex) {
-    return createWindowClone(document, document, windowWidth, windowHeight, options, document.defaultView.pageXOffset, document.defaultView.pageYOffset).then(function(container) {
-        log("Document cloned");
-        var attributeName = html2canvasNodeAttribute + html2canvasIndex;
-        var selector = "[" + attributeName + "='" + html2canvasIndex + "']";
-        document.querySelector(selector).removeAttribute(attributeName);
-        var clonedWindow = container.contentWindow;
-        var node = clonedWindow.document.querySelector(selector);
-        var oncloneHandler = (typeof(options.onclone) === "function") ? Promise.resolve(options.onclone(clonedWindow.document)) : Promise.resolve(true);
-        return oncloneHandler.then(function() {
-            return renderWindow(node, container, options, windowWidth, windowHeight);
-        });
-    });
-}
-
-function renderWindow(node, container, options, windowWidth, windowHeight) {
-    var clonedWindow = container.contentWindow;
-    var support = new Support(clonedWindow.document);
-    var imageLoader = new ImageLoader(options, support);
-    var bounds = getBounds(node);
-    var width = options.type === "view" ? windowWidth : documentWidth(clonedWindow.document);
-    var height = options.type === "view" ? windowHeight : documentHeight(clonedWindow.document);
-    var renderer = new options.renderer(width, height, imageLoader, options, document);
-    var parser = new NodeParser(node, renderer, support, imageLoader, options);
-    return parser.ready.then(function() {
-        log("Finished rendering");
-        var canvas;
-
-        if (options.type === "view") {
-            canvas = crop(renderer.canvas, {width: renderer.canvas.width, height: renderer.canvas.height, top: 0, left: 0, x: 0, y: 0});
-        } else if (node === clonedWindow.document.body || node === clonedWindow.document.documentElement || options.canvas != null) {
-            canvas = renderer.canvas;
-        } else {
-            canvas = crop(renderer.canvas, {width:  options.width != null ? options.width : bounds.width, height: options.height != null ? options.height : bounds.height, top: bounds.top, left: bounds.left, x: clonedWindow.pageXOffset, y: clonedWindow.pageYOffset});
-        }
-
-        cleanupContainer(container, options);
-        return canvas;
-    });
-}
-
-function cleanupContainer(container, options) {
-    if (options.removeContainer) {
-        container.parentNode.removeChild(container);
-        log("Cleaned up container");
+function restoreOwnerScroll(ownerDocument, x, y) {
+    if (ownerDocument.defaultView && (x !== ownerDocument.defaultView.pageXOffset || y !== ownerDocument.defaultView.pageYOffset)) {
+        ownerDocument.defaultView.scrollTo(x, y);
     }
 }
 
-function crop(canvas, bounds) {
-    var croppedCanvas = document.createElement("canvas");
-    var x1 = Math.min(canvas.width - 1, Math.max(0, bounds.left));
-    var x2 = Math.min(canvas.width, Math.max(1, bounds.left + bounds.width));
-    var y1 = Math.min(canvas.height - 1, Math.max(0, bounds.top));
-    var y2 = Math.min(canvas.height, Math.max(1, bounds.top + bounds.height));
-    croppedCanvas.width = bounds.width;
-    croppedCanvas.height =  bounds.height;
-    log("Cropping canvas at:", "left:", bounds.left, "top:", bounds.top, "width:", (x2-x1), "height:", (y2-y1));
-    log("Resulting crop with width", bounds.width, "and height", bounds.height, " with x", x1, "and y", y1);
-    croppedCanvas.getContext("2d").drawImage(canvas, x1, y1, x2-x1, y2-y1, bounds.x, bounds.y, x2-x1, y2-y1);
-    return croppedCanvas;
+function cloneCanvasContents(canvas, clonedCanvas) {
+    try {
+        if (clonedCanvas) {
+            clonedCanvas.width = canvas.width;
+            clonedCanvas.height = canvas.height;
+            clonedCanvas.getContext("2d").putImageData(canvas.getContext("2d").getImageData(0, 0, canvas.width, canvas.height), 0, 0);
+        }
+    } catch(e) {
+        log("Unable to copy canvas content from", canvas, e);
+    }
 }
 
-function documentWidth (doc) {
-    return Math.max(
-        Math.max(doc.body.scrollWidth, doc.documentElement.scrollWidth),
-        Math.max(doc.body.offsetWidth, doc.documentElement.offsetWidth),
-        Math.max(doc.body.clientWidth, doc.documentElement.clientWidth)
-    );
-}
-
-function documentHeight (doc) {
-    return Math.max(
-        Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight),
-        Math.max(doc.body.offsetHeight, doc.documentElement.offsetHeight),
-        Math.max(doc.body.clientHeight, doc.documentElement.clientHeight)
-    );
-}
-
-function smallImage() {
-    return "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
-}
-
-function isIE9() {
-    return document.documentMode && document.documentMode <= 9;
-}
-
-// https://github.com/niklasvh/html2canvas/issues/503
-function cloneNodeIE9(node, javascriptEnabled) {
+function cloneNode(node, javascriptEnabled) {
     var clone = node.nodeType === 3 ? document.createTextNode(node.nodeValue) : node.cloneNode(false);
 
     var child = node.firstChild;
     while(child) {
         if (javascriptEnabled === true || child.nodeType !== 1 || child.nodeName !== 'SCRIPT') {
-            clone.appendChild(cloneNodeIE9(child, javascriptEnabled));
+            clone.appendChild(cloneNode(child, javascriptEnabled));
         }
         child = child.nextSibling;
+    }
+
+    if (node.nodeType === 1) {
+        clone._scrollTop = node.scrollTop;
+        clone._scrollLeft = node.scrollLeft;
+        if (node.nodeName === "CANVAS") {
+            cloneCanvasContents(node, clone);
+        } else if (node.nodeName === "TEXTAREA" || node.nodeName === "SELECT") {
+            clone.value = node.value;
+        }
     }
 
     return clone;
 }
 
-function createWindowClone(ownerDocument, containerDocument, width, height, options, x ,y) {
-    labelCanvasElements(ownerDocument);
-    var documentElement = isIE9() ? cloneNodeIE9(ownerDocument.documentElement, options.javascriptEnabled) : ownerDocument.documentElement.cloneNode(true);
+function initNode(node) {
+    if (node.nodeType === 1) {
+        node.scrollTop = node._scrollTop;
+        node.scrollLeft = node._scrollLeft;
+
+        var child = node.firstChild;
+        while(child) {
+            initNode(child);
+            child = child.nextSibling;
+        }
+    }
+}
+
+module.exports = function(ownerDocument, containerDocument, width, height, options, x ,y) {
+    var documentElement = cloneNode(ownerDocument.documentElement, options.javascriptEnabled);
     var container = containerDocument.createElement("iframe");
 
     container.className = "html2canvas-container";
@@ -732,19 +592,21 @@ function createWindowClone(ownerDocument, containerDocument, width, height, opti
     return new Promise(function(resolve) {
         var documentClone = container.contentWindow.document;
 
-        cloneNodeValues(ownerDocument.documentElement, documentElement, "textarea");
-        cloneNodeValues(ownerDocument.documentElement, documentElement, "select");
-
         /* Chrome doesn't detect relative background-images assigned in inline <style> sheets when fetched through getComputedStyle
          if window url is about:blank, we can assign the url to current by writing onto the document
          */
         container.contentWindow.onload = container.onload = function() {
             var interval = setInterval(function() {
                 if (documentClone.body.childNodes.length > 0) {
-                    cloneCanvasContents(ownerDocument, documentClone);
+                    initNode(documentClone.documentElement);
                     clearInterval(interval);
                     if (options.type === "view") {
                         container.contentWindow.scrollTo(x, y);
+                        if ((/(iPad|iPhone|iPod)/g).test(navigator.userAgent) && (container.contentWindow.scrollY !== y || container.contentWindow.scrollX !== x)) {
+                            documentClone.documentElement.style.top = (-y) + "px";
+                            documentClone.documentElement.style.left = (-x) + "px";
+                            documentClone.documentElement.style.position = 'absolute';
+                        }
                     }
                     resolve(container);
                 }
@@ -755,106 +617,12 @@ function createWindowClone(ownerDocument, containerDocument, width, height, opti
         documentClone.write("<!DOCTYPE html><html></html>");
         // Chrome scrolls the parent document for some reason after the write to the cloned window???
         restoreOwnerScroll(ownerDocument, x, y);
-        documentClone.replaceChild(options.javascriptEnabled === true ? documentClone.adoptNode(documentElement) : removeScriptNodes(documentClone.adoptNode(documentElement)), documentClone.documentElement);
+        documentClone.replaceChild(documentClone.adoptNode(documentElement), documentClone.documentElement);
         documentClone.close();
     });
-}
+};
 
-function cloneNodeValues(document, clone, nodeName) {
-    var originalNodes = document.getElementsByTagName(nodeName);
-    var clonedNodes = clone.getElementsByTagName(nodeName);
-    var count = originalNodes.length;
-    for (var i = 0; i < count; i++) {
-        clonedNodes[i].value = originalNodes[i].value;
-    }
-}
-
-function restoreOwnerScroll(ownerDocument, x, y) {
-    if (ownerDocument.defaultView && (x !== ownerDocument.defaultView.pageXOffset || y !== ownerDocument.defaultView.pageYOffset)) {
-        ownerDocument.defaultView.scrollTo(x, y);
-    }
-}
-
-function loadUrlDocument(src, proxy, document, width, height, options) {
-    return new Proxy(src, proxy, window.document).then(documentFromHTML(src)).then(function(doc) {
-        return createWindowClone(doc, document, width, height, options, 0, 0);
-    });
-}
-
-function documentFromHTML(src) {
-    return function(html) {
-        var parser = new DOMParser(), doc;
-        try {
-            doc = parser.parseFromString(html, "text/html");
-        } catch(e) {
-            log("DOMParser not supported, falling back to createHTMLDocument");
-            doc = document.implementation.createHTMLDocument("");
-            try {
-                doc.open();
-                doc.write(html);
-                doc.close();
-            } catch(ee) {
-                log("createHTMLDocument write not supported, falling back to document.body.innerHTML");
-                doc.body.innerHTML = html; // ie9 doesnt support writing to documentElement
-            }
-        }
-
-        var b = doc.querySelector("base");
-        if (!b || !b.href.host) {
-            var base = doc.createElement("base");
-            base.href = src;
-            doc.head.insertBefore(base, doc.head.firstChild);
-        }
-
-        return doc;
-    };
-}
-
-
-function labelCanvasElements(ownerDocument) {
-    [].slice.call(ownerDocument.querySelectorAll("canvas"), 0).forEach(function(canvas) {
-        canvas.setAttribute(html2canvasCanvasCloneAttribute, "canvas-" + html2canvasCanvasCloneIndex++);
-    });
-}
-
-function cloneCanvasContents(ownerDocument, documentClone) {
-    [].slice.call(ownerDocument.querySelectorAll("[" + html2canvasCanvasCloneAttribute + "]"), 0).forEach(function(canvas) {
-        try {
-            var clonedCanvas = documentClone.querySelector('[' + html2canvasCanvasCloneAttribute + '="' + canvas.getAttribute(html2canvasCanvasCloneAttribute) + '"]');
-            if (clonedCanvas) {
-                clonedCanvas.width = canvas.width;
-                clonedCanvas.height = canvas.height;
-                clonedCanvas.getContext("2d").putImageData(canvas.getContext("2d").getImageData(0, 0, canvas.width, canvas.height), 0, 0);
-            }
-        } catch(e) {
-            log("Unable to copy canvas content from", canvas, e);
-        }
-        canvas.removeAttribute(html2canvasCanvasCloneAttribute);
-    });
-}
-
-function removeScriptNodes(parent) {
-    [].slice.call(parent.childNodes, 0).filter(isElementNode).forEach(function(node) {
-        if (node.tagName === "SCRIPT") {
-            parent.removeChild(node);
-        } else {
-            removeScriptNodes(node);
-        }
-    });
-    return parent;
-}
-
-function isElementNode(node) {
-    return node.nodeType === Node.ELEMENT_NODE;
-}
-
-function absoluteUrl(url) {
-    var link = document.createElement("a");
-    link.href = url;
-    link.href = link.href;
-    return link;
-}
-
+},{"./log":13}],3:[function(_dereq_,module,exports){
 // http://dev.w3.org/csswg/css-color/
 
 function Color(value) {
@@ -926,7 +694,7 @@ Color.prototype.hex6 = function(value) {
 };
 
 
-var _rgb = /^rgb\((\d{1,3}) *, *(\d{1,3}) *, *(\d{1,3})\)$/;
+var _rgb = /^rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$/;
 
 Color.prototype.rgb = function(value) {
     var match = null;
@@ -938,7 +706,7 @@ Color.prototype.rgb = function(value) {
     return match !== null;
 };
 
-var _rgba = /^rgba\((\d{1,3}) *, *(\d{1,3}) *, *(\d{1,3}) *, *(\d+\.?\d*)\)$/;
+var _rgba = /^rgba\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d?\.?\d+)\s*\)$/;
 
 Color.prototype.rgba = function(value) {
     var match = null;
@@ -958,12 +726,13 @@ Color.prototype.toString = function() {
 };
 
 Color.prototype.namedColor = function(value) {
-    var color = colors[value.toLowerCase()];
+    value = value.toLowerCase();
+    var color = colors[value];
     if (color) {
         this.r = color[0];
         this.g = color[1];
         this.b = color[2];
-    } else if (value.toLowerCase() === "transparent") {
+    } else if (value === "transparent") {
         this.r = this.g = this.b = this.a = 0;
         return true;
     }
@@ -1125,6 +894,168 @@ var colors = {
     "yellowgreen": [154, 205, 50]
 };
 
+module.exports = Color;
+
+},{}],4:[function(_dereq_,module,exports){
+var Support = _dereq_('./support');
+var CanvasRenderer = _dereq_('./renderers/canvas');
+var ImageLoader = _dereq_('./imageloader');
+var NodeParser = _dereq_('./nodeparser');
+var NodeContainer = _dereq_('./nodecontainer');
+var log = _dereq_('./log');
+var utils = _dereq_('./utils');
+var createWindowClone = _dereq_('./clone');
+var loadUrlDocument = _dereq_('./proxy').loadUrlDocument;
+var getBounds = utils.getBounds;
+
+var html2canvasNodeAttribute = "data-html2canvas-node";
+var html2canvasCloneIndex = 0;
+
+function html2canvas(nodeList, options) {
+    var index = html2canvasCloneIndex++;
+    options = options || {};
+    if (options.logging) {
+        log.options.logging = true;
+        log.options.start = Date.now();
+    }
+
+    options.async = typeof(options.async) === "undefined" ? true : options.async;
+    options.allowTaint = typeof(options.allowTaint) === "undefined" ? false : options.allowTaint;
+    options.removeContainer = typeof(options.removeContainer) === "undefined" ? true : options.removeContainer;
+    options.javascriptEnabled = typeof(options.javascriptEnabled) === "undefined" ? false : options.javascriptEnabled;
+    options.imageTimeout = typeof(options.imageTimeout) === "undefined" ? 10000 : options.imageTimeout;
+    options.renderer = typeof(options.renderer) === "function" ? options.renderer : CanvasRenderer;
+    options.strict = !!options.strict;
+
+    if (typeof(nodeList) === "string") {
+        if (typeof(options.proxy) !== "string") {
+            return Promise.reject("Proxy must be used when rendering url");
+        }
+        var width = options.width != null ? options.width : window.innerWidth;
+        var height = options.height != null ? options.height : window.innerHeight;
+        return loadUrlDocument(absoluteUrl(nodeList), options.proxy, document, width, height, options).then(function(container) {
+            return renderWindow(container.contentWindow.document.documentElement, container, options, width, height);
+        });
+    }
+
+    var node = ((nodeList === undefined) ? [document.documentElement] : ((nodeList.length) ? nodeList : [nodeList]))[0];
+    node.setAttribute(html2canvasNodeAttribute + index, index);
+    return renderDocument(node.ownerDocument, options, node.ownerDocument.defaultView.innerWidth, node.ownerDocument.defaultView.innerHeight, index).then(function(canvas) {
+        if (typeof(options.onrendered) === "function") {
+            log("options.onrendered is deprecated, html2canvas returns a Promise containing the canvas");
+            options.onrendered(canvas);
+        }
+        return canvas;
+    });
+}
+
+html2canvas.CanvasRenderer = CanvasRenderer;
+html2canvas.NodeContainer = NodeContainer;
+html2canvas.log = log;
+html2canvas.utils = utils;
+
+var html2canvasExport = (typeof(document) === "undefined" || typeof(Object.create) !== "function" || typeof(document.createElement("canvas").getContext) !== "function") ? function() {
+    return Promise.reject("No canvas support");
+} : html2canvas;
+
+module.exports = html2canvasExport;
+
+if (typeof(define) === 'function' && define.amd) {
+    define('html2canvas', [], function() {
+        return html2canvasExport;
+    });
+}
+
+function renderDocument(document, options, windowWidth, windowHeight, html2canvasIndex) {
+    return createWindowClone(document, document, windowWidth, windowHeight, options, document.defaultView.pageXOffset, document.defaultView.pageYOffset).then(function(container) {
+        log("Document cloned");
+        var attributeName = html2canvasNodeAttribute + html2canvasIndex;
+        var selector = "[" + attributeName + "='" + html2canvasIndex + "']";
+        document.querySelector(selector).removeAttribute(attributeName);
+        var clonedWindow = container.contentWindow;
+        var node = clonedWindow.document.querySelector(selector);
+        var oncloneHandler = (typeof(options.onclone) === "function") ? Promise.resolve(options.onclone(clonedWindow.document)) : Promise.resolve(true);
+        return oncloneHandler.then(function() {
+            return renderWindow(node, container, options, windowWidth, windowHeight);
+        });
+    });
+}
+
+function renderWindow(node, container, options, windowWidth, windowHeight) {
+    var clonedWindow = container.contentWindow;
+    var support = new Support(clonedWindow.document);
+    var imageLoader = new ImageLoader(options, support);
+    var bounds = getBounds(node);
+    var width = options.type === "view" ? windowWidth : documentWidth(clonedWindow.document);
+    var height = options.type === "view" ? windowHeight : documentHeight(clonedWindow.document);
+    var renderer = new options.renderer(width, height, imageLoader, options, document);
+    var parser = new NodeParser(node, renderer, support, imageLoader, options);
+    return parser.ready.then(function() {
+        log("Finished rendering");
+        var canvas;
+
+        if (options.type === "view") {
+            canvas = crop(renderer.canvas, {width: renderer.canvas.width, height: renderer.canvas.height, top: 0, left: 0, x: 0, y: 0});
+        } else if (node === clonedWindow.document.body || node === clonedWindow.document.documentElement || options.canvas != null) {
+            canvas = renderer.canvas;
+        } else {
+            canvas = crop(renderer.canvas, {width:  options.width != null ? options.width : bounds.width, height: options.height != null ? options.height : bounds.height, top: bounds.top, left: bounds.left, x: 0, y: 0});
+        }
+
+        cleanupContainer(container, options);
+        return canvas;
+    });
+}
+
+function cleanupContainer(container, options) {
+    if (options.removeContainer) {
+        container.parentNode.removeChild(container);
+        log("Cleaned up container");
+    }
+}
+
+function crop(canvas, bounds) {
+    var croppedCanvas = document.createElement("canvas");
+    var x1 = Math.min(canvas.width - 1, Math.max(0, bounds.left));
+    var x2 = Math.min(canvas.width, Math.max(1, bounds.left + bounds.width));
+    var y1 = Math.min(canvas.height - 1, Math.max(0, bounds.top));
+    var y2 = Math.min(canvas.height, Math.max(1, bounds.top + bounds.height));
+    croppedCanvas.width = bounds.width;
+    croppedCanvas.height =  bounds.height;
+    var width = x2-x1;
+    var height = y2-y1;
+    log("Cropping canvas at:", "left:", bounds.left, "top:", bounds.top, "width:", width, "height:", height);
+    log("Resulting crop with width", bounds.width, "and height", bounds.height, "with x", x1, "and y", y1);
+    croppedCanvas.getContext("2d").drawImage(canvas, x1, y1, width, height, bounds.x, bounds.y, width, height);
+    return croppedCanvas;
+}
+
+function documentWidth (doc) {
+    return Math.max(
+        Math.max(doc.body.scrollWidth, doc.documentElement.scrollWidth),
+        Math.max(doc.body.offsetWidth, doc.documentElement.offsetWidth),
+        Math.max(doc.body.clientWidth, doc.documentElement.clientWidth)
+    );
+}
+
+function documentHeight (doc) {
+    return Math.max(
+        Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight),
+        Math.max(doc.body.offsetHeight, doc.documentElement.offsetHeight),
+        Math.max(doc.body.clientHeight, doc.documentElement.clientHeight)
+    );
+}
+
+function absoluteUrl(url) {
+    var link = document.createElement("a");
+    link.href = url;
+    link.href = link.href;
+    return link;
+}
+
+},{"./clone":2,"./imageloader":11,"./log":13,"./nodecontainer":14,"./nodeparser":15,"./proxy":16,"./renderers/canvas":20,"./support":22,"./utils":26}],5:[function(_dereq_,module,exports){
+var log = _dereq_('./log');
+var smallImage = _dereq_('./utils').smallImage;
 
 function DummyImageContainer(src) {
     this.src = src;
@@ -1143,6 +1074,11 @@ function DummyImageContainer(src) {
         });
     }
 }
+
+module.exports = DummyImageContainer;
+
+},{"./log":13,"./utils":26}],6:[function(_dereq_,module,exports){
+var smallImage = _dereq_('./utils').smallImage;
 
 function Font(family, size) {
     var container = document.createElement('div'),
@@ -1193,6 +1129,11 @@ function Font(family, size) {
     this.middle = middle;
 }
 
+module.exports = Font;
+
+},{"./utils":26}],7:[function(_dereq_,module,exports){
+var Font = _dereq_('./font');
+
 function FontMetrics() {
     this.data = {};
 }
@@ -1203,6 +1144,13 @@ FontMetrics.prototype.getMetrics = function(family, size) {
     }
     return this.data[family + "-" + size];
 };
+
+module.exports = FontMetrics;
+
+},{"./font":6}],8:[function(_dereq_,module,exports){
+var utils = _dereq_('./utils');
+var getBounds = utils.getBounds;
+var loadUrlDocument = _dereq_('./proxy').loadUrlDocument;
 
 function FrameContainer(container, sameOrigin, options) {
     this.image = null;
@@ -1218,6 +1166,7 @@ function FrameContainer(container, sameOrigin, options) {
             resolve(container);
         }
     })).then(function(container) {
+        var html2canvas = _dereq_('./core');
         return html2canvas(container.contentWindow.document.documentElement, {type: 'view', width: container.width, height: container.height, proxy: options.proxy, javascriptEnabled: options.javascriptEnabled, removeContainer: options.removeContainer, allowTaint: options.allowTaint, imageTimeout: options.imageTimeout / 2});
     }).then(function(canvas) {
         return self.image = canvas;
@@ -1229,6 +1178,9 @@ FrameContainer.prototype.proxyLoad = function(proxy, bounds, options) {
     return loadUrlDocument(container.src, proxy, container.ownerDocument, bounds.width, bounds.height, options);
 };
 
+module.exports = FrameContainer;
+
+},{"./core":4,"./proxy":16,"./utils":26}],9:[function(_dereq_,module,exports){
 function GradientContainer(imageData) {
     this.src = imageData.value;
     this.colorStops = [];
@@ -1240,11 +1192,18 @@ function GradientContainer(imageData) {
     this.promise = Promise.resolve(true);
 }
 
-GradientContainer.prototype.TYPES = {
+GradientContainer.TYPES = {
     LINEAR: 1,
     RADIAL: 2
 };
 
+// TODO: support hsl[a], negative %/length values
+// TODO: support <angle> (e.g. -?\d{1,3}(?:\.\d+)deg, etc. : https://developer.mozilla.org/docs/Web/CSS/angle )
+GradientContainer.REGEXP_COLORSTOP = /^\s*(rgba?\(\s*\d{1,3},\s*\d{1,3},\s*\d{1,3}(?:,\s*[0-9\.]+)?\s*\)|[a-z]{3,20}|#[a-f0-9]{3,6})(?:\s+(\d{1,3}(?:\.\d+)?)(%|px)?)?(?:\s|$)/i;
+
+module.exports = GradientContainer;
+
+},{}],10:[function(_dereq_,module,exports){
 function ImageContainer(src, cors) {
     this.src = src;
     this.image = new Image();
@@ -1262,6 +1221,20 @@ function ImageContainer(src, cors) {
         }
     });
 }
+
+module.exports = ImageContainer;
+
+},{}],11:[function(_dereq_,module,exports){
+var log = _dereq_('./log');
+var ImageContainer = _dereq_('./imagecontainer');
+var DummyImageContainer = _dereq_('./dummyimagecontainer');
+var ProxyImageContainer = _dereq_('./proxyimagecontainer');
+var FrameContainer = _dereq_('./framecontainer');
+var SVGContainer = _dereq_('./svgcontainer');
+var SVGNodeContainer = _dereq_('./svgnodecontainer');
+var LinearGradientContainer = _dereq_('./lineargradientcontainer');
+var WebkitGradientContainer = _dereq_('./webkitgradientcontainer');
+var bind = _dereq_('./utils').bind;
 
 function ImageLoader(options, support) {
     this.link = null;
@@ -1408,14 +1381,21 @@ ImageLoader.prototype.timeout = function(container, timeout) {
     return promise;
 };
 
+module.exports = ImageLoader;
+
+},{"./dummyimagecontainer":5,"./framecontainer":8,"./imagecontainer":10,"./lineargradientcontainer":12,"./log":13,"./proxyimagecontainer":17,"./svgcontainer":23,"./svgnodecontainer":24,"./utils":26,"./webkitgradientcontainer":27}],12:[function(_dereq_,module,exports){
+var GradientContainer = _dereq_('./gradientcontainer');
+var Color = _dereq_('./color');
+
 function LinearGradientContainer(imageData) {
     GradientContainer.apply(this, arguments);
-    this.type = this.TYPES.LINEAR;
+    this.type = GradientContainer.TYPES.LINEAR;
 
-    var hasDirection = imageData.args[0].match(this.stepRegExp) === null;
+    var hasDirection = LinearGradientContainer.REGEXP_DIRECTION.test( imageData.args[0] ) ||
+        !GradientContainer.REGEXP_COLORSTOP.test( imageData.args[0] );
 
     if (hasDirection) {
-        imageData.args[0].split(" ").reverse().forEach(function(position) {
+        imageData.args[0].split(/\s+/).reverse().forEach(function(position, index) {
             switch(position) {
             case "left":
                 this.x0 = 0;
@@ -1441,6 +1421,24 @@ function LinearGradientContainer(imageData) {
                 this.x1 = x0;
                 this.y1 = y0;
                 break;
+            case "center":
+                break; // centered by default
+            // Firefox internally converts position keywords to percentages:
+            // http://www.w3.org/TR/2010/WD-CSS2-20101207/colors.html#propdef-background-position
+            default: // percentage or absolute length
+                // TODO: support absolute start point positions (e.g., use bounds to convert px to a ratio)
+                var ratio = parseFloat(position, 10) * 1e-2;
+                if (isNaN(ratio)) { // invalid or unhandled value
+                    break;
+                }
+                if (index === 0) {
+                    this.y0 = ratio;
+                    this.y1 = 1 - this.y0;
+                } else {
+                    this.x0 = ratio;
+                    this.x1 = 1 - this.x0;
+                }
+                break;
             }
         }, this);
     } else {
@@ -1449,12 +1447,15 @@ function LinearGradientContainer(imageData) {
     }
 
     this.colorStops = imageData.args.slice(hasDirection ? 1 : 0).map(function(colorStop) {
-        var colorStopMatch = colorStop.match(this.stepRegExp);
+        var colorStopMatch = colorStop.match(GradientContainer.REGEXP_COLORSTOP);
+        var value = +colorStopMatch[2];
+        var unit = value === 0 ? "%" : colorStopMatch[3]; // treat "0" as "0%"
         return {
             color: new Color(colorStopMatch[1]),
-            stop: colorStopMatch[3] === "%" ? colorStopMatch[2] / 100 : null
+            // TODO: support absolute stop positions (e.g., compute gradient line length & convert px to ratio)
+            stop: unit === "%" ? value / 100 : null
         };
-    }, this);
+    });
 
     if (this.colorStops[0].stop === null) {
         this.colorStops[0].stop = 0;
@@ -1464,6 +1465,7 @@ function LinearGradientContainer(imageData) {
         this.colorStops[this.colorStops.length - 1].stop = 1;
     }
 
+    // calculates and fills-in explicit stop positions when omitted from rule
     this.colorStops.forEach(function(colorStop, index) {
         if (colorStop.stop === null) {
             this.colorStops.slice(index).some(function(find, count) {
@@ -1480,13 +1482,27 @@ function LinearGradientContainer(imageData) {
 
 LinearGradientContainer.prototype = Object.create(GradientContainer.prototype);
 
-LinearGradientContainer.prototype.stepRegExp = /((?:rgb|rgba)\(\d{1,3},\s\d{1,3},\s\d{1,3}(?:,\s[0-9\.]+)?\))\s*(\d{1,3})?(%|px)?/;
+// TODO: support <angle> (e.g. -?\d{1,3}(?:\.\d+)deg, etc. : https://developer.mozilla.org/docs/Web/CSS/angle )
+LinearGradientContainer.REGEXP_DIRECTION = /^\s*(?:to|left|right|top|bottom|center|\d{1,3}(?:\.\d+)?%?)(?:\s|$)/i;
 
-function log() {
-    if (window.html2canvas.logging && window.console && window.console.log) {
-        Function.prototype.bind.call(window.console.log, (window.console)).apply(window.console, [(Date.now() - window.html2canvas.start) + "ms", "html2canvas:"].concat([].slice.call(arguments, 0)));
+module.exports = LinearGradientContainer;
+
+},{"./color":3,"./gradientcontainer":9}],13:[function(_dereq_,module,exports){
+var logger = function() {
+    if (logger.options.logging && window.console && window.console.log) {
+        Function.prototype.bind.call(window.console.log, (window.console)).apply(window.console, [(Date.now() - logger.options.start) + "ms", "html2canvas:"].concat([].slice.call(arguments, 0)));
     }
-}
+};
+
+logger.options = {logging: false};
+module.exports = logger;
+
+},{}],14:[function(_dereq_,module,exports){
+var Color = _dereq_('./color');
+var utils = _dereq_('./utils');
+var getBounds = utils.getBounds;
+var parseBackgrounds = utils.parseBackgrounds;
+var offsetBounds = utils.offsetBounds;
 
 function NodeContainer(node, parent) {
     this.node = node;
@@ -1611,7 +1627,7 @@ NodeContainer.prototype.cssList = function(property, index) {
     value = value[index || 0] || value[0] || 'auto';
     value = value.trim().split(' ');
     if (value.length === 1) {
-        value = [value[0], value[0]];
+        value = [value[0], isPercentage(value[0]) ? 'auto' : value[0]];
     }
     return value;
 };
@@ -1742,7 +1758,7 @@ NodeContainer.prototype.getValue = function() {
     return value.length === 0 ? (this.node.placeholder || "") : value;
 };
 
-NodeContainer.prototype.MATRIX_PROPERTY = /(matrix)\((.+)\)/;
+NodeContainer.prototype.MATRIX_PROPERTY = /(matrix|matrix3d)\((.+)\)/;
 NodeContainer.prototype.TEXT_SHADOW_PROPERTY = /((rgba|rgb)\([^\)]+\)(\s-?\d+px){0,})/g;
 NodeContainer.prototype.TEXT_SHADOW_VALUES = /(-?\d+px)|(#.+)|(rgb\(.+\))|(rgba\(.+\))/g;
 NodeContainer.prototype.CLIP = /^rect\((\d+)px,? (\d+)px,? (\d+)px,? (\d+)px\)$/;
@@ -1757,107 +1773,16 @@ function parseMatrix(match) {
         return match[2].split(",").map(function(s) {
             return parseFloat(s.trim());
         });
+    } else if (match && match[1] === "matrix3d") {
+        var matrix3d = match[2].split(",").map(function(s) {
+          return parseFloat(s.trim());
+        });
+        return [matrix3d[0], matrix3d[1], matrix3d[4], matrix3d[5], matrix3d[12], matrix3d[13]];
     }
 }
 
 function isPercentage(value) {
     return value.toString().indexOf("%") !== -1;
-}
-
-function parseBackgrounds(backgroundImage) {
-    var whitespace = ' \r\n\t',
-        method, definition, prefix, prefix_i, block, results = [],
-        mode = 0, numParen = 0, quote, args;
-    var appendResult = function() {
-        if(method) {
-            if (definition.substr(0, 1) === '"') {
-                definition = definition.substr(1, definition.length - 2);
-            }
-            if (definition) {
-                args.push(definition);
-            }
-            if (method.substr(0, 1) === '-' && (prefix_i = method.indexOf('-', 1 ) + 1) > 0) {
-                prefix = method.substr(0, prefix_i);
-                method = method.substr(prefix_i);
-            }
-            results.push({
-                prefix: prefix,
-                method: method.toLowerCase(),
-                value: block,
-                args: args,
-                image: null
-            });
-        }
-        args = [];
-        method = prefix = definition = block = '';
-    };
-    args = [];
-    method = prefix = definition = block = '';
-    backgroundImage.split("").forEach(function(c) {
-        if (mode === 0 && whitespace.indexOf(c) > -1) {
-            return;
-        }
-        switch(c) {
-        case '"':
-            if(!quote) {
-                quote = c;
-            } else if(quote === c) {
-                quote = null;
-            }
-            break;
-        case '(':
-            if(quote) {
-                break;
-            } else if(mode === 0) {
-                mode = 1;
-                block += c;
-                return;
-            } else {
-                numParen++;
-            }
-            break;
-        case ')':
-            if (quote) {
-                break;
-            } else if(mode === 1) {
-                if(numParen === 0) {
-                    mode = 0;
-                    block += c;
-                    appendResult();
-                    return;
-                } else {
-                    numParen--;
-                }
-            }
-            break;
-
-        case ',':
-            if (quote) {
-                break;
-            } else if(mode === 0) {
-                appendResult();
-                return;
-            } else if (mode === 1) {
-                if (numParen === 0 && !method.match(/^url$/i)) {
-                    args.push(definition);
-                    definition = '';
-                    block += c;
-                    return;
-                }
-            }
-            break;
-        }
-
-        block += c;
-        if (mode === 0) {
-            method += c;
-        } else {
-            definition += c;
-        }
-    });
-
-    appendResult();
-    return results;
 }
 
 function removePx(str) {
@@ -1868,34 +1793,22 @@ function asFloat(str) {
     return parseFloat(str);
 }
 
-function getBounds(node) {
-    if (node.getBoundingClientRect) {
-        var clientRect = node.getBoundingClientRect();
-        var width = node.offsetWidth == null ? clientRect.width : node.offsetWidth;
-        return {
-            top: clientRect.top,
-            bottom: clientRect.bottom || (clientRect.top + clientRect.height),
-            right: clientRect.left + width,
-            left: clientRect.left,
-            width:  width,
-            height: node.offsetHeight == null ? clientRect.height : node.offsetHeight
-        };
-    }
-    return {};
-}
+module.exports = NodeContainer;
 
-function offsetBounds(node) {
-    var parent = node.offsetParent ? offsetBounds(node.offsetParent) : {top: 0, left: 0};
-
-    return {
-        top: node.offsetTop + parent.top,
-        bottom: node.offsetTop + node.offsetHeight + parent.top,
-        right: node.offsetLeft + parent.left + node.offsetWidth,
-        left: node.offsetLeft + parent.left,
-        width: node.offsetWidth,
-        height: node.offsetHeight
-    };
-}
+},{"./color":3,"./utils":26}],15:[function(_dereq_,module,exports){
+var log = _dereq_('./log');
+var punycode = _dereq_('punycode');
+var NodeContainer = _dereq_('./nodecontainer');
+var TextContainer = _dereq_('./textcontainer');
+var PseudoElementContainer = _dereq_('./pseudoelementcontainer');
+var FontMetrics = _dereq_('./fontmetrics');
+var Color = _dereq_('./color');
+var StackingContext = _dereq_('./stackingcontext');
+var utils = _dereq_('./utils');
+var bind = utils.bind;
+var getBounds = utils.getBounds;
+var parseBackgrounds = utils.parseBackgrounds;
+var offsetBounds = utils.offsetBounds;
 
 function NodeParser(element, renderer, support, imageLoader, options) {
     log("Starting NodeParser");
@@ -2317,9 +2230,9 @@ NodeParser.prototype.paintFormValue = function(container) {
 
 NodeParser.prototype.paintText = function(container) {
     container.applyTextTransform();
-    var characters = window.html2canvas.punycode.ucs2.decode(container.node.data);
+    var characters = punycode.ucs2.decode(container.node.data);
     var textList = (!this.options.letterRendering || noLetterSpacing(container)) && !hasUnicode(container.node.data) ? getWords(characters) : characters.map(function(character) {
-        return window.html2canvas.punycode.ucs2.encode([character]);
+        return punycode.ucs2.encode([character]);
     });
 
     var weight = container.parent.fontWeight();
@@ -2501,14 +2414,14 @@ function calculateCurvePoints(bounds, borderRadius, borders) {
         width = bounds.width,
         height = bounds.height,
 
-        tlh = borderRadius[0][0],
-        tlv = borderRadius[0][1],
-        trh = borderRadius[1][0],
-        trv = borderRadius[1][1],
-        brh = borderRadius[2][0],
-        brv = borderRadius[2][1],
-        blh = borderRadius[3][0],
-        blv = borderRadius[3][1];
+        tlh = borderRadius[0][0] < width / 2 ? borderRadius[0][0] : width / 2,
+        tlv = borderRadius[0][1] < height / 2 ? borderRadius[0][1] : height / 2,
+        trh = borderRadius[1][0] < width / 2 ? borderRadius[1][0] : width / 2,
+        trv = borderRadius[1][1] < height / 2 ? borderRadius[1][1] : height / 2,
+        brh = borderRadius[2][0] < width / 2 ? borderRadius[2][0] : width / 2,
+        brv = borderRadius[2][1] < height / 2 ? borderRadius[2][1] : height / 2,
+        blh = borderRadius[3][0] < width / 2 ? borderRadius[3][0] : width / 2,
+        blv = borderRadius[3][1] < height / 2 ? borderRadius[3][1] : height / 2;
 
     var topWidth = width - trh,
         rightHeight = height - brv,
@@ -2692,12 +2605,6 @@ function hasOpacity(container) {
     return container.getOpacity() < 1;
 }
 
-function bind(callback, context) {
-    return function() {
-        return callback.apply(context, arguments);
-    };
-}
-
 function asInt(value) {
     return parseInt(value, 10);
 }
@@ -2725,7 +2632,7 @@ function getWords(characters) {
         if (isWordBoundary(characters[i]) === onWordBoundary) {
             word = characters.splice(0, i);
             if (word.length) {
-                words.push(window.html2canvas.punycode.ucs2.encode(word));
+                words.push(punycode.ucs2.encode(word));
             }
             onWordBoundary =! onWordBoundary;
             i = 0;
@@ -2736,7 +2643,7 @@ function getWords(characters) {
         if (i >= characters.length) {
             word = characters.splice(0, i);
             if (word.length) {
-                words.push(window.html2canvas.punycode.ucs2.encode(word));
+                words.push(punycode.ucs2.encode(word));
             }
         }
     }
@@ -2757,7 +2664,17 @@ function hasUnicode(string) {
     return (/[^\u0000-\u00ff]/).test(string);
 }
 
+module.exports = NodeParser;
+
+},{"./color":3,"./fontmetrics":7,"./log":13,"./nodecontainer":14,"./pseudoelementcontainer":18,"./stackingcontext":21,"./textcontainer":25,"./utils":26,"punycode":1}],16:[function(_dereq_,module,exports){
+var XHR = _dereq_('./xhr');
+var utils = _dereq_('./utils');
+var log = _dereq_('./log');
+var createWindowClone = _dereq_('./clone');
+var decode64 = utils.decode64;
+
 function Proxy(src, proxyUrl, document) {
+    var supportsCORS = ('withCredentials' in new XMLHttpRequest());
     if (!proxyUrl) {
         return Promise.reject("No proxy configured");
     }
@@ -2770,10 +2687,8 @@ function Proxy(src, proxyUrl, document) {
 }
 var proxyCount = 0;
 
-var supportsCORS = ('withCredentials' in new XMLHttpRequest());
-var supportsCORSImage = ('crossOrigin' in new Image());
-
 function ProxyURL(src, proxyUrl, document) {
+    var supportsCORSImage = ('crossOrigin' in new Image());
     var callback = createCallback(supportsCORSImage);
     var url = createProxyUrl(proxyUrl, src, callback);
     return (supportsCORSImage ? Promise.resolve(url) : jsonp(document, url, callback).then(function(response) {
@@ -2809,8 +2724,49 @@ function createProxyUrl(proxyUrl, src, callback) {
     return proxyUrl + "?url=" + encodeURIComponent(src) + (callback.length ? "&callback=html2canvas.proxy." + callback : "");
 }
 
+function documentFromHTML(src) {
+    return function(html) {
+        var parser = new DOMParser(), doc;
+        try {
+            doc = parser.parseFromString(html, "text/html");
+        } catch(e) {
+            log("DOMParser not supported, falling back to createHTMLDocument");
+            doc = document.implementation.createHTMLDocument("");
+            try {
+                doc.open();
+                doc.write(html);
+                doc.close();
+            } catch(ee) {
+                log("createHTMLDocument write not supported, falling back to document.body.innerHTML");
+                doc.body.innerHTML = html; // ie9 doesnt support writing to documentElement
+            }
+        }
+
+        var b = doc.querySelector("base");
+        if (!b || !b.href.host) {
+            var base = doc.createElement("base");
+            base.href = src;
+            doc.head.insertBefore(base, doc.head.firstChild);
+        }
+
+        return doc;
+    };
+}
+
+function loadUrlDocument(src, proxy, document, width, height, options) {
+    return new Proxy(src, proxy, window.document).then(documentFromHTML(src)).then(function(doc) {
+        return createWindowClone(doc, document, width, height, options, 0, 0);
+    });
+}
+
+exports.Proxy = Proxy;
+exports.ProxyURL = ProxyURL;
+exports.loadUrlDocument = loadUrlDocument;
+
+},{"./clone":2,"./log":13,"./utils":26,"./xhr":28}],17:[function(_dereq_,module,exports){
+var ProxyURL = _dereq_('./proxy').ProxyURL;
+
 function ProxyImageContainer(src, proxy) {
-    var script = document.createElement("script");
     var link = document.createElement("a");
     link.href = src;
     src = link.href;
@@ -2827,6 +2783,11 @@ function ProxyImageContainer(src, proxy) {
         })['catch'](reject);
     });
 }
+
+module.exports = ProxyImageContainer;
+
+},{"./proxy":16}],18:[function(_dereq_,module,exports){
+var NodeContainer = _dereq_('./nodecontainer');
 
 function PseudoElementContainer(node, parent, type) {
     NodeContainer.call(this, node, parent);
@@ -2862,6 +2823,11 @@ PseudoElementContainer.prototype.getHideClass = function() {
 
 PseudoElementContainer.prototype.PSEUDO_HIDE_ELEMENT_CLASS_BEFORE = "___html2canvas___pseudoelement_before";
 PseudoElementContainer.prototype.PSEUDO_HIDE_ELEMENT_CLASS_AFTER = "___html2canvas___pseudoelement_after";
+
+module.exports = PseudoElementContainer;
+
+},{"./nodecontainer":14}],19:[function(_dereq_,module,exports){
+var log = _dereq_('./log');
 
 function Renderer(width, height, images, options, document) {
     this.width = width;
@@ -2968,233 +2934,12 @@ Renderer.prototype.renderBackgroundRepeating = function(container, bounds, image
     }
 };
 
-function StackingContext(hasOwnStacking, opacity, element, parent) {
-    NodeContainer.call(this, element, parent);
-    this.ownStacking = hasOwnStacking;
-    this.contexts = [];
-    this.children = [];
-    this.opacity = (this.parent ? this.parent.stack.opacity : 1) * opacity;
-}
+module.exports = Renderer;
 
-StackingContext.prototype = Object.create(NodeContainer.prototype);
-
-StackingContext.prototype.getParentStack = function(context) {
-    var parentStack = (this.parent) ? this.parent.stack : null;
-    return parentStack ? (parentStack.ownStacking ? parentStack : parentStack.getParentStack(context)) : context.stack;
-};
-
-function Support(document) {
-    this.rangeBounds = this.testRangeBounds(document);
-    this.cors = this.testCORS();
-    this.svg = this.testSVG();
-}
-
-Support.prototype.testRangeBounds = function(document) {
-    var range, testElement, rangeBounds, rangeHeight, support = false;
-
-    if (document.createRange) {
-        range = document.createRange();
-        if (range.getBoundingClientRect) {
-            testElement = document.createElement('boundtest');
-            testElement.style.height = "123px";
-            testElement.style.display = "block";
-            document.body.appendChild(testElement);
-
-            range.selectNode(testElement);
-            rangeBounds = range.getBoundingClientRect();
-            rangeHeight = rangeBounds.height;
-
-            if (rangeHeight === 123) {
-                support = true;
-            }
-            document.body.removeChild(testElement);
-        }
-    }
-
-    return support;
-};
-
-Support.prototype.testCORS = function() {
-    return typeof((new Image()).crossOrigin) !== "undefined";
-};
-
-Support.prototype.testSVG = function() {
-    var img = new Image();
-    var canvas = document.createElement("canvas");
-    var ctx =  canvas.getContext("2d");
-    img.src = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'></svg>";
-
-    try {
-        ctx.drawImage(img, 0, 0);
-        canvas.toDataURL();
-    } catch(e) {
-        return false;
-    }
-    return true;
-};
-
-function SVGContainer(src) {
-    this.src = src;
-    this.image = null;
-    var self = this;
-
-    this.promise = this.hasFabric().then(function() {
-        return (self.isInline(src) ? Promise.resolve(self.inlineFormatting(src)) : XHR(src));
-    }).then(function(svg) {
-        return new Promise(function(resolve) {
-            html2canvas.fabric.loadSVGFromString(svg, self.createCanvas.call(self, resolve));
-        });
-    });
-}
-
-SVGContainer.prototype.hasFabric = function() {
-    return !html2canvas.fabric ? Promise.reject(new Error("html2canvas.svg.js is not loaded, cannot render svg")) : Promise.resolve();
-};
-
-SVGContainer.prototype.inlineFormatting = function(src) {
-    return (/^data:image\/svg\+xml;base64,/.test(src)) ? this.decode64(this.removeContentType(src)) : this.removeContentType(src);
-};
-
-SVGContainer.prototype.removeContentType = function(src) {
-    return src.replace(/^data:image\/svg\+xml(;base64)?,/,'');
-};
-
-SVGContainer.prototype.isInline = function(src) {
-    return (/^data:image\/svg\+xml/i.test(src));
-};
-
-SVGContainer.prototype.createCanvas = function(resolve) {
-    var self = this;
-    return function (objects, options) {
-        var canvas = new html2canvas.fabric.StaticCanvas('c');
-        self.image = canvas.lowerCanvasEl;
-        canvas
-            .setWidth(options.width)
-            .setHeight(options.height)
-            .add(html2canvas.fabric.util.groupSVGElements(objects, options))
-            .renderAll();
-        resolve(canvas.lowerCanvasEl);
-    };
-};
-
-SVGContainer.prototype.decode64 = function(str) {
-    return (typeof(window.atob) === "function") ? window.atob(str) : decode64(str);
-};
-
-/*
- * base64-arraybuffer
- * https://github.com/niklasvh/base64-arraybuffer
- *
- * Copyright (c) 2012 Niklas von Hertzen
- * Licensed under the MIT license.
- */
-
-function decode64(base64) {
-    var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-    var len = base64.length, i, encoded1, encoded2, encoded3, encoded4, byte1, byte2, byte3;
-
-    var output = "";
-
-    for (i = 0; i < len; i+=4) {
-        encoded1 = chars.indexOf(base64[i]);
-        encoded2 = chars.indexOf(base64[i+1]);
-        encoded3 = chars.indexOf(base64[i+2]);
-        encoded4 = chars.indexOf(base64[i+3]);
-
-        byte1 = (encoded1 << 2) | (encoded2 >> 4);
-        byte2 = ((encoded2 & 15) << 4) | (encoded3 >> 2);
-        byte3 = ((encoded3 & 3) << 6) | encoded4;
-        if (encoded3 === 64) {
-            output += String.fromCharCode(byte1);
-        } else if (encoded4 === 64 || encoded4 === -1) {
-            output += String.fromCharCode(byte1, byte2);
-        } else{
-            output += String.fromCharCode(byte1, byte2, byte3);
-        }
-    }
-
-    return output;
-}
-
-function SVGNodeContainer(node, native) {
-    this.src = node;
-    this.image = null;
-    var self = this;
-
-    this.promise = native ? new Promise(function(resolve, reject) {
-        self.image = new Image();
-        self.image.onload = resolve;
-        self.image.onerror = reject;
-        self.image.src = "data:image/svg+xml," + (new XMLSerializer()).serializeToString(node);
-        if (self.image.complete === true) {
-            resolve(self.image);
-        }
-    }) : this.hasFabric().then(function() {
-        return new Promise(function(resolve) {
-            html2canvas.fabric.parseSVGDocument(node, self.createCanvas.call(self, resolve));
-        });
-    });
-}
-
-SVGNodeContainer.prototype = Object.create(SVGContainer.prototype);
-
-function TextContainer(node, parent) {
-    NodeContainer.call(this, node, parent);
-}
-
-TextContainer.prototype = Object.create(NodeContainer.prototype);
-
-TextContainer.prototype.applyTextTransform = function() {
-    this.node.data = this.transform(this.parent.css("textTransform"));
-};
-
-TextContainer.prototype.transform = function(transform) {
-    var text = this.node.data;
-    switch(transform){
-        case "lowercase":
-            return text.toLowerCase();
-        case "capitalize":
-            return text.replace(/(^|\s|:|-|\(|\))([a-z])/g, capitalize);
-        case "uppercase":
-            return text.toUpperCase();
-        default:
-            return text;
-    }
-};
-
-function capitalize(m, p1, p2) {
-    if (m.length > 0) {
-        return p1 + p2.toUpperCase();
-    }
-}
-
-function WebkitGradientContainer(imageData) {
-    GradientContainer.apply(this, arguments);
-    this.type = (imageData.args[0] === "linear") ? this.TYPES.LINEAR : this.TYPES.RADIAL;
-}
-
-WebkitGradientContainer.prototype = Object.create(GradientContainer.prototype);
-
-function XHR(url) {
-    return new Promise(function(resolve, reject) {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', url);
-
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                resolve(xhr.responseText);
-            } else {
-                reject(new Error(xhr.statusText));
-            }
-        };
-
-        xhr.onerror = function() {
-            reject(new Error("Network Error"));
-        };
-
-        xhr.send();
-    });
-}
+},{"./log":13}],20:[function(_dereq_,module,exports){
+var Renderer = _dereq_('../renderer');
+var LinearGradientContainer = _dereq_('../lineargradientcontainer');
+var log = _dereq_('../log');
 
 function CanvasRenderer(width, height) {
     Renderer.apply(this, arguments);
@@ -3372,4 +3117,403 @@ function hasEntries(array) {
     return array.length > 0;
 }
 
-}).call({}, typeof(window) !== "undefined" ? window : undefined, typeof(document) !== "undefined" ? document : undefined);
+module.exports = CanvasRenderer;
+
+},{"../lineargradientcontainer":12,"../log":13,"../renderer":19}],21:[function(_dereq_,module,exports){
+var NodeContainer = _dereq_('./nodecontainer');
+
+function StackingContext(hasOwnStacking, opacity, element, parent) {
+    NodeContainer.call(this, element, parent);
+    this.ownStacking = hasOwnStacking;
+    this.contexts = [];
+    this.children = [];
+    this.opacity = (this.parent ? this.parent.stack.opacity : 1) * opacity;
+}
+
+StackingContext.prototype = Object.create(NodeContainer.prototype);
+
+StackingContext.prototype.getParentStack = function(context) {
+    var parentStack = (this.parent) ? this.parent.stack : null;
+    return parentStack ? (parentStack.ownStacking ? parentStack : parentStack.getParentStack(context)) : context.stack;
+};
+
+module.exports = StackingContext;
+
+},{"./nodecontainer":14}],22:[function(_dereq_,module,exports){
+function Support(document) {
+    this.rangeBounds = this.testRangeBounds(document);
+    this.cors = this.testCORS();
+    this.svg = this.testSVG();
+}
+
+Support.prototype.testRangeBounds = function(document) {
+    var range, testElement, rangeBounds, rangeHeight, support = false;
+
+    if (document.createRange) {
+        range = document.createRange();
+        if (range.getBoundingClientRect) {
+            testElement = document.createElement('boundtest');
+            testElement.style.height = "123px";
+            testElement.style.display = "block";
+            document.body.appendChild(testElement);
+
+            range.selectNode(testElement);
+            rangeBounds = range.getBoundingClientRect();
+            rangeHeight = rangeBounds.height;
+
+            if (rangeHeight === 123) {
+                support = true;
+            }
+            document.body.removeChild(testElement);
+        }
+    }
+
+    return support;
+};
+
+Support.prototype.testCORS = function() {
+    return typeof((new Image()).crossOrigin) !== "undefined";
+};
+
+Support.prototype.testSVG = function() {
+    var img = new Image();
+    var canvas = document.createElement("canvas");
+    var ctx =  canvas.getContext("2d");
+    img.src = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'></svg>";
+
+    try {
+        ctx.drawImage(img, 0, 0);
+        canvas.toDataURL();
+    } catch(e) {
+        return false;
+    }
+    return true;
+};
+
+module.exports = Support;
+
+},{}],23:[function(_dereq_,module,exports){
+var XHR = _dereq_('./xhr');
+var decode64 = _dereq_('./utils').decode64;
+
+function SVGContainer(src) {
+    this.src = src;
+    this.image = null;
+    var self = this;
+
+    this.promise = this.hasFabric().then(function() {
+        return (self.isInline(src) ? Promise.resolve(self.inlineFormatting(src)) : XHR(src));
+    }).then(function(svg) {
+        return new Promise(function(resolve) {
+            window.html2canvas.svg.fabric.loadSVGFromString(svg, self.createCanvas.call(self, resolve));
+        });
+    });
+}
+
+SVGContainer.prototype.hasFabric = function() {
+    return !window.html2canvas.svg || !window.html2canvas.svg.fabric ? Promise.reject(new Error("html2canvas.svg.js is not loaded, cannot render svg")) : Promise.resolve();
+};
+
+SVGContainer.prototype.inlineFormatting = function(src) {
+    return (/^data:image\/svg\+xml;base64,/.test(src)) ? this.decode64(this.removeContentType(src)) : this.removeContentType(src);
+};
+
+SVGContainer.prototype.removeContentType = function(src) {
+    return src.replace(/^data:image\/svg\+xml(;base64)?,/,'');
+};
+
+SVGContainer.prototype.isInline = function(src) {
+    return (/^data:image\/svg\+xml/i.test(src));
+};
+
+SVGContainer.prototype.createCanvas = function(resolve) {
+    var self = this;
+    return function (objects, options) {
+        var canvas = new window.html2canvas.svg.fabric.StaticCanvas('c');
+        self.image = canvas.lowerCanvasEl;
+        canvas
+            .setWidth(options.width)
+            .setHeight(options.height)
+            .add(window.html2canvas.svg.fabric.util.groupSVGElements(objects, options))
+            .renderAll();
+        resolve(canvas.lowerCanvasEl);
+    };
+};
+
+SVGContainer.prototype.decode64 = function(str) {
+    return (typeof(window.atob) === "function") ? window.atob(str) : decode64(str);
+};
+
+module.exports = SVGContainer;
+
+},{"./utils":26,"./xhr":28}],24:[function(_dereq_,module,exports){
+var SVGContainer = _dereq_('./svgcontainer');
+
+function SVGNodeContainer(node, _native) {
+    this.src = node;
+    this.image = null;
+    var self = this;
+
+    this.promise = _native ? new Promise(function(resolve, reject) {
+        self.image = new Image();
+        self.image.onload = resolve;
+        self.image.onerror = reject;
+        self.image.src = "data:image/svg+xml," + (new XMLSerializer()).serializeToString(node);
+        if (self.image.complete === true) {
+            resolve(self.image);
+        }
+    }) : this.hasFabric().then(function() {
+        return new Promise(function(resolve) {
+            window.html2canvas.svg.fabric.parseSVGDocument(node, self.createCanvas.call(self, resolve));
+        });
+    });
+}
+
+SVGNodeContainer.prototype = Object.create(SVGContainer.prototype);
+
+module.exports = SVGNodeContainer;
+
+},{"./svgcontainer":23}],25:[function(_dereq_,module,exports){
+var NodeContainer = _dereq_('./nodecontainer');
+
+function TextContainer(node, parent) {
+    NodeContainer.call(this, node, parent);
+}
+
+TextContainer.prototype = Object.create(NodeContainer.prototype);
+
+TextContainer.prototype.applyTextTransform = function() {
+    this.node.data = this.transform(this.parent.css("textTransform"));
+};
+
+TextContainer.prototype.transform = function(transform) {
+    var text = this.node.data;
+    switch(transform){
+        case "lowercase":
+            return text.toLowerCase();
+        case "capitalize":
+            return text.replace(/(^|\s|:|-|\(|\))([a-z])/g, capitalize);
+        case "uppercase":
+            return text.toUpperCase();
+        default:
+            return text;
+    }
+};
+
+function capitalize(m, p1, p2) {
+    if (m.length > 0) {
+        return p1 + p2.toUpperCase();
+    }
+}
+
+module.exports = TextContainer;
+
+},{"./nodecontainer":14}],26:[function(_dereq_,module,exports){
+exports.smallImage = function smallImage() {
+    return "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+};
+
+exports.bind = function(callback, context) {
+    return function() {
+        return callback.apply(context, arguments);
+    };
+};
+
+/*
+ * base64-arraybuffer
+ * https://github.com/niklasvh/base64-arraybuffer
+ *
+ * Copyright (c) 2012 Niklas von Hertzen
+ * Licensed under the MIT license.
+ */
+
+exports.decode64 = function(base64) {
+    var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    var len = base64.length, i, encoded1, encoded2, encoded3, encoded4, byte1, byte2, byte3;
+
+    var output = "";
+
+    for (i = 0; i < len; i+=4) {
+        encoded1 = chars.indexOf(base64[i]);
+        encoded2 = chars.indexOf(base64[i+1]);
+        encoded3 = chars.indexOf(base64[i+2]);
+        encoded4 = chars.indexOf(base64[i+3]);
+
+        byte1 = (encoded1 << 2) | (encoded2 >> 4);
+        byte2 = ((encoded2 & 15) << 4) | (encoded3 >> 2);
+        byte3 = ((encoded3 & 3) << 6) | encoded4;
+        if (encoded3 === 64) {
+            output += String.fromCharCode(byte1);
+        } else if (encoded4 === 64 || encoded4 === -1) {
+            output += String.fromCharCode(byte1, byte2);
+        } else{
+            output += String.fromCharCode(byte1, byte2, byte3);
+        }
+    }
+
+    return output;
+};
+
+exports.getBounds = function(node) {
+    if (node.getBoundingClientRect) {
+        var clientRect = node.getBoundingClientRect();
+        var width = node.offsetWidth == null ? clientRect.width : node.offsetWidth;
+        return {
+            top: clientRect.top,
+            bottom: clientRect.bottom || (clientRect.top + clientRect.height),
+            right: clientRect.left + width,
+            left: clientRect.left,
+            width:  width,
+            height: node.offsetHeight == null ? clientRect.height : node.offsetHeight
+        };
+    }
+    return {};
+};
+
+exports.offsetBounds = function(node) {
+    var parent = node.offsetParent ? exports.offsetBounds(node.offsetParent) : {top: 0, left: 0};
+
+    return {
+        top: node.offsetTop + parent.top,
+        bottom: node.offsetTop + node.offsetHeight + parent.top,
+        right: node.offsetLeft + parent.left + node.offsetWidth,
+        left: node.offsetLeft + parent.left,
+        width: node.offsetWidth,
+        height: node.offsetHeight
+    };
+};
+
+exports.parseBackgrounds = function(backgroundImage) {
+    var whitespace = ' \r\n\t',
+        method, definition, prefix, prefix_i, block, results = [],
+        mode = 0, numParen = 0, quote, args;
+    var appendResult = function() {
+        if(method) {
+            if (definition.substr(0, 1) === '"') {
+                definition = definition.substr(1, definition.length - 2);
+            }
+            if (definition) {
+                args.push(definition);
+            }
+            if (method.substr(0, 1) === '-' && (prefix_i = method.indexOf('-', 1 ) + 1) > 0) {
+                prefix = method.substr(0, prefix_i);
+                method = method.substr(prefix_i);
+            }
+            results.push({
+                prefix: prefix,
+                method: method.toLowerCase(),
+                value: block,
+                args: args,
+                image: null
+            });
+        }
+        args = [];
+        method = prefix = definition = block = '';
+    };
+    args = [];
+    method = prefix = definition = block = '';
+    backgroundImage.split("").forEach(function(c) {
+        if (mode === 0 && whitespace.indexOf(c) > -1) {
+            return;
+        }
+        switch(c) {
+        case '"':
+            if(!quote) {
+                quote = c;
+            } else if(quote === c) {
+                quote = null;
+            }
+            break;
+        case '(':
+            if(quote) {
+                break;
+            } else if(mode === 0) {
+                mode = 1;
+                block += c;
+                return;
+            } else {
+                numParen++;
+            }
+            break;
+        case ')':
+            if (quote) {
+                break;
+            } else if(mode === 1) {
+                if(numParen === 0) {
+                    mode = 0;
+                    block += c;
+                    appendResult();
+                    return;
+                } else {
+                    numParen--;
+                }
+            }
+            break;
+
+        case ',':
+            if (quote) {
+                break;
+            } else if(mode === 0) {
+                appendResult();
+                return;
+            } else if (mode === 1) {
+                if (numParen === 0 && !method.match(/^url$/i)) {
+                    args.push(definition);
+                    definition = '';
+                    block += c;
+                    return;
+                }
+            }
+            break;
+        }
+
+        block += c;
+        if (mode === 0) {
+            method += c;
+        } else {
+            definition += c;
+        }
+    });
+
+    appendResult();
+    return results;
+};
+
+},{}],27:[function(_dereq_,module,exports){
+var GradientContainer = _dereq_('./gradientcontainer');
+
+function WebkitGradientContainer(imageData) {
+    GradientContainer.apply(this, arguments);
+    this.type = imageData.args[0] === "linear" ? GradientContainer.TYPES.LINEAR : GradientContainer.TYPES.RADIAL;
+}
+
+WebkitGradientContainer.prototype = Object.create(GradientContainer.prototype);
+
+module.exports = WebkitGradientContainer;
+
+},{"./gradientcontainer":9}],28:[function(_dereq_,module,exports){
+function XHR(url) {
+    return new Promise(function(resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url);
+
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                resolve(xhr.responseText);
+            } else {
+                reject(new Error(xhr.statusText));
+            }
+        };
+
+        xhr.onerror = function() {
+            reject(new Error("Network Error"));
+        };
+
+        xhr.send();
+    });
+}
+
+module.exports = XHR;
+
+},{}]},{},[4])(4)
+});
