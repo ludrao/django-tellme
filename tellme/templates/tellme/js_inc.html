@@ -5,6 +5,11 @@
     <script src="{% static 'tellme/vendor/jquery/jquery-3.5.1.js' %}"></script>
 {% endblock %}
 
+{% block es6promise %}
+    <script src="{% static 'tellme/vendor/es6-promise/es6-promise.auto.js' %}"></script>
+{% endblock %}
+
+
 {# Extend with an empty block if you other mean to deal with AJAX post request in Django #}
 {%  block ajax_csrf %}
     <script type="text/javascript">
