@@ -1,4 +1,4 @@
-name: Build, Test, and Release package via sdist
+name: Build, Test, and Release sdist
 
 # reference:
 #  - https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#contexts
