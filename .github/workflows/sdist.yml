@@ -1,0 +1,126 @@
+name: Build, Test, and Release package via sdist
+
+# reference:
+#  - https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#contexts
+#  - https://docs.github.com/en/actions/reference/environment-variables 
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Install Tox and any other packages
+        run: python -m pip install tox tox-gh-actions
+      - name: Display file tree
+        run: ls -laR tellme
+      - name: Build sdist
+        run: python -m tox -vv --sdistonly
+      - name: Archive sdist
+        uses: actions/upload-artifact@v2
+        with:
+          name: sdist
+          retention-days: 5
+          path: ~/.tox/distshare/*
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.6,3.7,3.8,3.9]
+        django: [111,22,30,31]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      # Remove tellme source folder so we operate on the installed sdist
+      - name: Remove source folder
+        run: rm -Rf tellme
+      - name: Install Tox and any other packages
+        run: python -m pip install tox tox-gh-actions
+      - name: Download sdist
+        uses: actions/download-artifact@v2
+        with:
+          name: sdist
+          path: ~/.toxsdistsrc/
+      - name: Display structure of downloaded files
+        run: ls -aR ~/.toxsdistsrc/
+      - name: Rename file
+        run: mv ~/.toxsdistsrc/django-tellme-*.zip /tmp/django-tellme-sdist-${{ github.run_number }}-${{ github.sha }}.zip
+      - name: Display tmp files
+        run: ls /tmp
+      - name: Run Tox
+        # Run tox using the version of Python in `PATH`
+        run: python -m tox -vv --installpkg "/tmp/django-tellme-sdist-${{ github.run_number }}-${{ github.sha }}.zip"
+        env:
+          DJANGO: ${{ matrix.django }}
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/p') || startsWith(github.ref, 'refs/tags/v')
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download sdist
+        uses: actions/download-artifact@v2
+        with:
+          name: sdist
+          path: ~/.toxsdistsrc/
+      - name: Display structure of downloaded files
+        run: ls -aR ~/.toxsdistsrc/
+      - name: Rename file
+        run: mv ~/.toxsdistsrc/django-tellme-*.zip /tmp/django-tellme-sdist-${{ github.run_number }}-${{ github.sha }}.zip
+      - name: Display tmp files
+        run: ls /tmp
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: startsWith(github.ref, 'refs/tags/p')
+      - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: /tmp/django-tellme-sdist-${{ github.run_number }}-${{ github.sha }}.zip
+          asset_name: django-tellme-sdist-${{ github.run_number }}-${{ github.sha }}.zip
+          asset_content_type: application/zip
+
+  pypi:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Install twine
+        run: python -m pip install twine
+      - name: Download sdist
+        uses: actions/download-artifact@v2
+        with:
+          name: sdist
+          path: dist
+      - name: Display structure of downloaded files
+        run: ls -aR dist
+      - name: Publish
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+        run: twine upload dist/*
