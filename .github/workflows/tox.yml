@@ -1,5 +1,9 @@
 name: Tox
 
+# reference:
+#  - https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#contexts
+#  - https://docs.github.com/en/actions/reference/environment-variables 
+
 on: [push]
 
 jobs:
@@ -51,17 +55,17 @@ jobs:
       - name: Display structure of downloaded files
         run: ls -aR ~/.toxsdistsrc/
       - name: Rename file
-        run: mv ~/.toxsdistsrc/django-tellme-*.zip /tmp/django-tellme-pre-${{ github.run_number }}-${{ github.sha }}.zip
+        run: mv ~/.toxsdistsrc/django-tellme-*.zip /tmp/django-tellme-sdist-${{ github.run_number }}-${{ github.sha }}.zip
       - name: Display tmp files
         run: ls /tmp
       - name: Run Tox
         # Run tox using the version of Python in `PATH`
-        run: python -m tox -vv --installpkg "/tmp/django-tellme-pre-${{ github.run_number }}-${{ github.sha }}.zip"
+        run: python -m tox -vv --installpkg "/tmp/django-tellme-sdist-${{ github.run_number }}-${{ github.sha }}.zip"
         env:
           DJANGO: ${{ matrix.django }}
 
-  prerelease:
-    if: contains(github.event.head_commit.message, '[prerelease]')
+  release:
+    if: startsWith(github.ref, 'refs/tags/p') || startsWith(github.ref, 'refs/tags/v')
     needs: test
     runs-on: ubuntu-latest
     steps:
@@ -73,7 +77,7 @@ jobs:
       - name: Display structure of downloaded files
         run: ls -aR ~/.toxsdistsrc/
       - name: Rename file
-        run: mv ~/.toxsdistsrc/django-tellme-*.zip /tmp/django-tellme-pre-${{ github.run_number }}-${{ github.sha }}.zip
+        run: mv ~/.toxsdistsrc/django-tellme-*.zip /tmp/django-tellme-sdist-${{ github.run_number }}-${{ github.sha }}.zip
       - name: Display tmp files
         run: ls /tmp
       - name: Create Release
@@ -82,10 +86,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: pre-${{ github.run_number }}-${{ github.sha }}
-          release_name: Pre-release ${{ github.run_number }}
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
           draft: false
-          prerelease: true
+          prerelease: startsWith(github.ref, 'refs/tags/p')
       - name: Upload Release Asset
         id: upload-release-asset 
         uses: actions/upload-release-asset@v1
@@ -93,6 +97,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: /tmp/django-tellme-pre-${{ github.run_number }}-${{ github.sha }}.zip
-          asset_name: django-tellme-pre-${{ github.run_number }}-${{ github.sha }}.zip
+          asset_path: /tmp/django-tellme-sdist-${{ github.run_number }}-${{ github.sha }}.zip
+          asset_name: django-tellme-sdist-${{ github.run_number }}-${{ github.sha }}.zip
           asset_content_type: application/zip
