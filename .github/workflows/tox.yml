@@ -50,9 +50,13 @@ jobs:
           path: ~/.toxsdistsrc/
       - name: Display structure of downloaded files
         run: ls -aR ~/.toxsdistsrc/
+      - name: Rename file
+        run: mv ~/.toxsdistsrc/django-tellme-*.zip /tmp/django-tellme-pre-${{ github.run_number }}-${{ github.sha }}.zip
+      - name: Display tmp files
+        run: ls /tmp
       - name: Run Tox
         # Run tox using the version of Python in `PATH`
-        run: python -m tox -vv
+        run: python -m tox -vv --installpkg "/tmp/django-tellme-pre-${{ github.run_number }}-${{ github.sha }}.zip"
         env:
           DJANGO: ${{ matrix.django }}
 
