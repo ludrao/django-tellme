@@ -64,8 +64,45 @@ jobs:
         env:
           DJANGO: ${{ matrix.django }}
 
+  pre-release:
+    if: startsWith(github.ref, 'refs/tags/p')
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download sdist
+        uses: actions/download-artifact@v2
+        with:
+          name: sdist
+          path: ~/.toxsdistsrc/
+      - name: Display structure of downloaded files
+        run: ls -aR ~/.toxsdistsrc/
+      - name: Rename file
+        run: mv ~/.toxsdistsrc/django-tellme-*.zip /tmp/django-tellme-sdist-${{ github.run_number }}-${{ github.sha }}.zip
+      - name: Display tmp files
+        run: ls /tmp
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Pre-release ${{ github.ref }}
+          draft: false
+          prerelease: true
+      - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: /tmp/django-tellme-sdist-${{ github.run_number }}-${{ github.sha }}.zip
+          asset_name: django-tellme-sdist-${{ github.run_number }}-${{ github.sha }}.zip
+          asset_content_type: application/zip
+
   release:
-    if: startsWith(github.ref, 'refs/tags/p') || startsWith(github.ref, 'refs/tags/v')
+    if: startsWith(github.ref, 'refs/tags/v')
     needs: test
     runs-on: ubuntu-latest
     steps:
@@ -89,7 +126,7 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
           draft: false
-          prerelease: startsWith(github.ref, 'refs/tags/p')
+          prerelease: false
       - name: Upload Release Asset
         id: upload-release-asset 
         uses: actions/upload-release-asset@v1
@@ -102,7 +139,6 @@ jobs:
           asset_content_type: application/zip
 
   pypi:
-    if: startsWith(github.ref, 'refs/tags/v')
     needs: release
     runs-on: ubuntu-latest
     steps:
