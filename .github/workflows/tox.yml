@@ -52,7 +52,7 @@ jobs:
         run: ls -aR ~/.toxsdistsrc/
       - name: Run Tox
         # Run tox using the version of Python in `PATH`
-        run: python -m tox -vv
+        run: python -m tox -vv --installpkg "{homedir}/.toxsdistsrc/*"
         env:
           DJANGO: ${{ matrix.django }}
 
