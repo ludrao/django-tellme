@@ -259,6 +259,9 @@ Important Notes
 
 Version History
 ---------------
+version 0.7.2
+    -- Adjusted released version number
+
 version 0.7.0
     -- Updated and Fixed the tox test suite (thx @thenewguy)
     -- Added GitHub action to run test and deploy to PiPy
