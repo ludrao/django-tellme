@@ -9,6 +9,7 @@
 
         var settings = $.extend({
             ajaxURL: 				'',
+            headers:  {},
             postBrowserInfo: 		true,
             postHTML:				true,
             postURL:				true,
@@ -513,13 +514,15 @@
                         $("#feedback-module").append(settings.tpl.submitLoading);
 
                         post.img = img;
-                        post.note = $('#feedback-note').val();
+                        post.note = $('#feedback-note')?.val() || $("input[name=feedback-note]")?.val();
+                        post.email = $("#feedback-user-email")?.val() || $("input[name=email]")?.val();
                         var data = {feedback: JSON.stringify(post)};
                         $.ajax({
                             url: settings.ajaxURL,
                             dataType: 'json',
                             type: 'POST',
                             data: data,
+                            headers: settings.headers,
                             success: function() {
                                 $('#feedback-module').append(settings.tpl.submitSuccess);
                             },
