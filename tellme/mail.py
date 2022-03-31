@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.core.mail import send_mail as django_send_mail
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 try:
     from django.core.urlresolvers import reverse
 except ImportError:

@@ -4,7 +4,7 @@ import django
 from django.contrib import admin
 from django.contrib import messages
 from django.utils.html import escape
-from django.utils.translation import ugettext_lazy as _, pgettext_lazy
+from django.utils.translation import gettext_lazy as _, pgettext_lazy
 from django.utils.safestring import mark_safe
 
 from .models import Feedback
