@@ -24,7 +24,7 @@ def get_notification_function(path=None):
 
 
 def post_feedback(request):
-    if request.method == 'POST' and request.is_ajax():
+    if request.method == 'POST' and request.headers.get('x-requested-with') == 'XMLHttpRequest':
 
         # Copy Post data names into names used into the model in order to automatically create the model/form
         # from the request dicts
